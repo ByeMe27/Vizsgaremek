@@ -1,0 +1,260 @@
+body {
+  background: #2b2f36;
+  font-family: "Inter", sans-serif;
+  color: #f1f1f1;
+}
+
+.navbar {
+  background: #353a42 !important;
+  border-radius: 16px;
+  padding: 0.8rem 1.5rem;
+  margin: 15px auto;
+  width: 95%;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar-brand img {
+  height: 42px;
+}
+
+.nav-link {
+  font-weight: 500;
+  padding: 8px 16px !important;
+  border-radius: 10px;
+  transition: 0.2s;
+  color: #e4e4e4 !important;
+}
+
+.nav-link:hover {
+  background: #414753;
+}
+
+.nav-link.active {
+  background: linear-gradient(135deg, #ff8c32, #ff3b3b);
+  color: white !important;
+}
+
+.user-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ff6a00, #ff3b3b);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-wrapper {
+  width: 95%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  border-radius: 14px;
+  background: #3b4049;
+  border: 1px solid #4a505c;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #f1f1f1;
+}
+
+.filter-btn:hover {
+  background: #464c58;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #ff8c32, #ff3b3b);
+  border-color: transparent;
+  color: white;
+}
+
+.orders-table {
+  width: 100%;
+  background: #3b4049;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.orders-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table thead {
+  background: #414753;
+}
+
+.orders-table th {
+  padding: 14px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #ffb27a;
+  text-transform: uppercase;
+}
+
+.orders-table td {
+  padding: 15px;
+  font-size: 15px;
+  border-top: 1px solid #4a505c;
+  color: #f1f1f1;
+}
+
+.orders-table tbody tr:hover {
+  background: #464c58;
+  cursor: pointer;
+}
+
+.status {
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.status.done {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+}
+
+.status.in-progress {
+  background: rgba(255, 140, 50, 0.25);
+  color: #ffb27a;
+}
+
+.status.waiting {
+  background: rgba(255, 59, 59, 0.25);
+  color: #ff7a7a;
+}
+
+.card {
+  border-radius: 18px;
+  background: #3b4049;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid #4a505c;
+}
+
+.card-title {
+  font-weight: 600;
+  color: #ffb27a;
+}
+
+#user-popup {
+  position: absolute;
+  top: 100px;
+  right: 39px;
+  width: 240px;
+
+  background: #353a42;
+  border-radius: 16px;
+  padding: 14px;
+
+  display: none;
+  z-index: 2000;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  animation: fadeIn 0.25s ease;
+}
+
+#popup-username {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+#user-popup .btn {
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+#user-popup .btn-outline-primary {
+  background: #3b4049;
+  border: 1px solid #4a505c;
+  color: #f1f1f1;
+}
+
+#user-popup .btn-outline-primary:hover {
+  background: #464c58;
+  border-color: #5a606c;
+}
+
+#user-popup .btn-outline-danger {
+  background: rgba(255, 59, 59, 0.15);
+  border: 1px solid rgba(255, 59, 59, 0.4);
+  color: #ff7a7a;
+}
+
+#user-popup .btn-outline-danger:hover {
+  background: rgba(255, 59, 59, 0.35);
+  color: #fff;
+}
+
+form input,
+form select,
+form textarea {
+  border-radius: 12px;
+  background: #2b2f36;
+  border: 1px solid #4a505c;
+  color: #f1f1f1;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #ff8c32;
+}
+
+form button {
+  border-radius: 14px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff6a00, #ff3b3b);
+  border: none;
+  color: white;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
