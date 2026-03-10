@@ -170,7 +170,6 @@ switch (end($uri)) {
             echo json_encode(["valasz" => "Nem sikerült lekérni a rendelés ID-t"]);
             return;
         }
-
         $rendelesid = $rendeles[0]["id"];
 
         //rendelestartalma insert
