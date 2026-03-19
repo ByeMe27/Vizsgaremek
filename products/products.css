@@ -95,7 +95,7 @@ body {
 }
 
 #products-container {
-  height: 75vh;
+  height: calc(100vh-120px);  /*80vh-rol atirva*/
 }
 
 /* TERMÉK KÁRTYÁK */
@@ -111,7 +111,7 @@ body {
 /* TERMÉK KÉPEK FIX MÉRETTEL */
 .card img {
   width: 100%;
-  height: 180px; /* fix magasság */
+  height: 150px; /* fix magasság */
   object-fit: cover; /* nem torzul, inkább levág */
   border-radius: 12px;
   margin-bottom: 10px;

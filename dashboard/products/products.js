@@ -27,10 +27,11 @@ async function loadProducts() {
     const row = document.getElementById("productRow");
 
     products.forEach((product) => {
+      // kep forrasa relativra valtoztatva
       row.innerHTML += `
         <div class="col-md-4 mb-4 d-flex">
           <div class="card shadow-sm w-100">
-            <img src="http://localhost/projekt/dashboard/products/uploads/${product.img}"
+            <img src="./uploads/${product.img}"
                  class="card-img-top"
                  alt="${product.nev}"
                  style="object-fit: cover; height: 200px; border-radius: 16px 16px 0 0;">
