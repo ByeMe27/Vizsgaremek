@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Dec 16. 10:21
+-- Létrehozás ideje: 2026. Már 19. 12:58
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -75,7 +75,8 @@ INSERT INTO `felhasznalo` (`id`, `name`, `email`, `pwd`, `role`, `class`) VALUES
 (33, 'bufes', 'bufes@gmail.com', '$2y$10$WacGl0wGLYya9dMMNty2qONyytWxmW/k29AZOebXoyENw8aXJRpH2', 'bufes', 'Bufe'),
 (34, 'admin', 'admin@gmail.com', '$2y$10$n4yplMoEb.EaZ.7uQOZ5yeHrhLoqRC62qExlrIpTacTF8ue2.mri2', 'admin', '-'),
 (35, 'user', 'user@gmail.com', '$2y$10$EASwU3cOWkmyKa66sX7VPeEyZNF/kREuHPs/FjwcPVvK907pVE4ae', 'user', '13C'),
-(36, 'das', 'asd11@gmail.com', '$2y$10$2d6O8mJkk2q2KZro16kqeO6j.6RZAUex9F5s3h0KZFrG9qLLem6vG', 'user', 'asd');
+(36, 'das', 'asd11@gmail.com', '$2y$10$2d6O8mJkk2q2KZro16kqeO6j.6RZAUex9F5s3h0KZFrG9qLLem6vG', 'user', 'asd'),
+(37, 'Teszt Elek', 'test66@gmail.com', '$2y$10$Sh0RPMpVHv88JKeUeeXzd.0AVIt0QDl9LGzLQ.lBKddYCceZpyStG', 'user', '13c');
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,9 @@ CREATE TABLE `menuk` (
 --
 
 INSERT INTO `menuk` (`id`, `name`, `price`, `img`) VALUES
-(9, 'asd', 10, '1765268816_Image_20251121_101222_784.jpeg');
+(9, 'asd', 10, '1765268816_Image_20251121_101222_784.jpeg'),
+(11, 'brown kedvence', 1100, '1773910406_milli.jpg'),
+(12, 'Patrick italai', 600, '1773914180_cappucino.jpg');
 
 -- --------------------------------------------------------
 
@@ -115,7 +118,11 @@ CREATE TABLE `menutermek` (
 
 INSERT INTO `menutermek` (`id`, `menu_id`, `termek_id`) VALUES
 (9, 9, 9),
-(10, 9, 18);
+(10, 9, 18),
+(13, 11, 22),
+(14, 11, 56),
+(15, 12, 21),
+(16, 12, 28);
 
 -- --------------------------------------------------------
 
@@ -149,7 +156,12 @@ INSERT INTO `rendeles` (`id`, `felh_id`, `datumido`, `statusz_id`) VALUES
 (18, 8, '2025-11-14 08:35:50', 2),
 (19, 9, '2025-11-14 08:49:02', 3),
 (21, 11, '2025-11-14 09:14:51', 2),
-(22, 12, '2025-11-14 09:28:09', 1);
+(22, 12, '2025-11-14 09:28:09', 1),
+(24, 37, '2026-03-19 10:27:39', 2),
+(26, 37, '2026-03-19 10:27:43', 2),
+(27, 37, '2026-03-19 10:27:46', 2),
+(28, 37, '2026-03-19 10:59:37', 3),
+(29, 37, '2026-03-19 12:22:14', 3);
 
 -- --------------------------------------------------------
 
@@ -163,6 +175,31 @@ CREATE TABLE `rendelestartalma` (
   `rend_id` int(11) NOT NULL,
   `mennyiseg` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `rendelestartalma`
+--
+
+INSERT INTO `rendelestartalma` (`id`, `term_id`, `rend_id`, `mennyiseg`) VALUES
+(37, 14, 24, 1),
+(38, 9, 24, 1),
+(39, 12, 24, 1),
+(40, 16, 24, 1),
+(41, 17, 24, 1),
+(42, 18, 24, 1),
+(45, 9, 26, 1),
+(46, 16, 26, 1),
+(47, 17, 26, 1),
+(48, 20, 27, 1),
+(49, 19, 27, 1),
+(50, 14, 28, 1),
+(51, 12, 28, 1),
+(52, 9, 28, 1),
+(53, 16, 28, 1),
+(54, 17, 28, 2),
+(55, 56, 29, 1),
+(56, 12, 29, 1),
+(57, 9, 29, 1);
 
 -- --------------------------------------------------------
 
@@ -205,39 +242,38 @@ CREATE TABLE `termek` (
 --
 
 INSERT INTO `termek` (`id`, `nev`, `kategoria`, `leiras`, `img`, `ar`) VALUES
-(9, 'Balaton szelet', 'édesség', 'Ropogós ostya csokoládébevonattal.', 'xyz', 290),
-(12, 'Fanta Narancs 0.5L', 'üdítő', 'Gyümölcsös üdítőital narancs ízben.', 'xyz', 480),
-(14, 'Sonkás szendvics', 'szendvics', 'Friss zsemlében sonka, sajt és saláta.', 'xyz', 890),
-(16, 'Csirkés bagett', 'szendvics', 'Meleg csirkemelles bagett friss zöldségekkel.', 'xyz', 990),
-(17, 'Sós mogyoró', 'snack', 'Klasszikus sós pörkölt mogyoró.', 'xyz', 350),
-(18, 'Chips sajtos', 'snack', 'Ropogós burgonyachips sajtos ízesítéssel.', 'xyz', 420),
-(19, 'Nachos salsa szósszal', 'snack', 'Tortilla chips pikáns szósszal.', 'xyz', 590),
-(20, 'Espresso', 'kávé', 'Erős, aromás olasz kávé.', 'xyz', 450),
-(21, 'Cappuccino', 'kávé', 'Lágy, tejes kávékülönlegesség.', 'xyz', 550),
-(22, 'Jegeskávé', 'kávé', 'Hűsítő, édes kávé jégkockákkal.', 'xyz', 600),
-(23, 'Sport szelet', 'édesség', 'Energiát adó kakaós szelet rumos ízzel.', 'xyz', 320),
-(24, 'Bounty', 'édesség', 'Kókuszos édesség csokoládébevonattal.', 'xyz', 390),
-(25, 'Snickers', 'édesség', 'Mogyorós karamell szelet csokiban.', 'xyz', 420),
-(26, 'Twix', 'édesség', 'Karamellás kekszcsík tejcsokoládéban.', 'xyz', 410),
-(27, 'Mars', 'édesség', 'Csokis-karamellás finomság minden alkalomra.', 'xyz', 430),
-(28, 'Nestea Barack 0.5L', 'üdítő', 'Barack ízű jeges tea frissítően.', 'xyz', 440),
-(29, 'Sprite 0.5L', 'üdítő', 'Citrom-lime ízű szénsavas üdítő.', 'xyz', 470),
-(30, 'Hell energiaital', 'üdítő', 'Energiát adó ital koffeinnel.', 'xyz', 590),
-(31, 'Gyros szendvics', 'szendvics', 'Ízletes pita csirkés gyros hússal és zöldséggel.', 'xyz', 1150),
-(32, 'Tonhalas szendvics', 'szendvics', 'Friss tonhalas bagett majonézzel.', 'xyz', 980),
-(33, 'Kétsajtos szendvics', 'szendvics', 'Sajtkedvelőknek dupla adaggal.', 'xyz', 870),
-(34, 'Popcorn sós', 'snack', 'Friss pattogatott kukorica, mozihangulatban.', 'xyz', 300),
-(35, 'Ropi', 'snack', 'Klasszikus sós ropi ropogtatnivalónak.', 'xyz', 250),
-(36, 'Pisztácia', 'snack', 'Pirított pisztácia héjában.', 'xyz', 690),
-(37, 'Latte Macchiato', 'kávé', 'Tejeskávé lágy habbal a tetején.', 'xyz', 590),
-(38, 'Americano', 'kávé', 'Hosszú fekete kávé, lágy ízzel.', 'xyz', 480),
-(39, 'Forró csoki', 'kávé', 'Selymes forró csokoládé hideg napokra.', 'xyz', 620),
-(40, 'Kinder Bueno', 'édesség', 'Krémes mogyorós töltelék ropogós ostyában.', 'xyz', 450),
-(41, 'M&M\'s', 'édesség', 'Színes cukorbevonatú csokigolyók.', 'xyz', 470),
+(9, 'Balatoni szelet', 'édesség', 'Kókuszos, csokis bevonatú ostyás cucc', 'balatoniszelet.png', 360),
+(12, 'Fizzy Narancs 0.5L', 'üdítő', 'narancsos majdnem fanta', 'fizzy.png', 450),
+(14, 'Sonkás szendvics', 'szendvics', 'Friss zsemlében sonka, sajt és uburka.', 'sonkasszendvics.png', 500),
+(16, 'Csirkés bagett', 'szendvics', 'Meleg csirkemelles bagett friss zöldségekkel.', 'csirkesbagett.png', 1600),
+(17, 'Sós mogyoró', 'snack', 'Klasszikus sós pörkölt mogyoró.', 'sosmogyoro.png', 400),
+(18, 'Chips sajtos', 'snack', 'Ropogós burgonyachips sajtos ízesítéssel.', 'sajtoschips.png', 420),
+(19, 'Nachos salsa szósszal', 'snack', 'Tortilla chips pikáns szósszal.', 'nachossalsa.png', 590),
+(20, 'Espresso', 'kávé', 'Erős, aromás olasz kávé.', 'espresso.png', 430),
+(21, 'Cappuccino', 'kávé', 'Lágy, tejes kávékülönlegesség.', 'cappuccino.png', 450),
+(22, 'Jegeskávé', 'kávé', 'Hűsítő, édes kávé jégkockákkal.', 'icecoffee.png', 500),
+(23, 'Sport szelet', 'édesség', 'Energiát adó kakaós szelet rumos ízzel.', 'sportszelet.png', 340),
+(24, 'Bounty', 'édesség', 'Kókuszos édesség csokoládébevonattal.', 'coconutbar.png', 390),
+(25, 'Snickers', 'édesség', 'Mogyorós karamell szelet csokiban.', 'crunchybar.png', 420),
+(26, 'Twix', 'édesség', 'Karamellás kekszcsík tejcsokoládéban.', 'twins.png', 410),
+(27, 'Mars', 'édesség', 'Csokis-karamellás finomság minden alkalomra.', 'planet.png', 430),
+(28, 'ICETEA Barack 0.5L', 'üdítő', 'Barack ízű jeges tea frissítően.', 'barackostea.png', 440),
+(29, 'Sprite 0.5L', 'üdítő', 'Citrom-lime ízű szénsavas üdítő.', 'sprite.png', 470),
+(30, 'ENERGY energiaital', 'üdítő', 'Energiát adó ital koffeinnel.', 'energy.png', 450),
+(31, 'Gyros szendvics', 'szendvics', 'Ízletes pita csirkés gyros hússal és zöldséggel.', 'gyros.png', 1400),
+(32, 'Tonhalas szendvics', 'szendvics', 'Friss tonhalas bagett majonézzel.', 'tonhalas.png', 1100),
+(33, 'Kétsajtos szendvics', 'szendvics', 'Sajtkedvelőknek dupla adaggal.', 'ketsajtos.png', 870),
+(34, 'Popcorn sós', 'snack', 'Friss pattogatott kukorica, mozihangulatban.', 'popcorn.png', 350),
+(35, 'Ropi', 'snack', 'Klasszikus sós ropi ropogtatnivalónak.', 'ropi.png', 250),
+(36, 'Pisztácia', 'snack', 'Pirított pisztácia héjában.', 'pisztacia.png', 450),
+(37, 'Latte Macchiato', 'kávé', 'Tejeskávé lágy habbal a tetején.', 'latte.png', 400),
+(38, 'Americano', 'kávé', 'Hosszú fekete kávé, lágy ízzel.', 'americano.png', 420),
+(39, 'Forró csoki', 'kávé', 'Selymes forró csokoládé hideg napokra.', 'forrocsoki.png', 450),
+(40, 'Kinder Bueno', 'édesség', 'Krémes mogyorós töltelék ropogós ostyában.', 'duo.png', 450),
+(41, 'M&M\'s', 'édesség', 'Színes cukorbevonatú csokigolyók.', 'yums.png', 470),
 (49, 'Ármin', 'dik', 'XD', '1764929916_Image_20251121_100010_248.jpeg', 100),
-(50, 'sd', 'dik', 'XD', '1764929931_Képkivágás.PNG', 100),
-(51, 'Csokis csigusz', 'édesség', 'finom csokis csiga', '1764930055_asd.png', 999),
-(53, 'papa kedvence', 'édesség', 'papsmoke kedvence', '1765276555_image1.png', 800);
+(51, 'Csokis csigusz', 'édesség', 'finom csokis csiga', 'kakaoscsiga.png', 600),
+(56, 'Sonkás-sajtos melegszendvics', 'szendvics', 'nagyon jofele', '1773909076_sonkassajtosmeleg.png', 850);
 
 -- --------------------------------------------------------
 
@@ -348,37 +384,37 @@ ALTER TABLE `visszajelzes`
 -- AUTO_INCREMENT a táblához `felhasznalo`
 --
 ALTER TABLE `felhasznalo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT a táblához `menuk`
 --
 ALTER TABLE `menuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT a táblához `menutermek`
 --
 ALTER TABLE `menutermek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT a táblához `rendeles`
 --
 ALTER TABLE `rendeles`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT a táblához `rendelestartalma`
 --
 ALTER TABLE `rendelestartalma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT a táblához `termek`
 --
 ALTER TABLE `termek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT a táblához `visszajelzes`
