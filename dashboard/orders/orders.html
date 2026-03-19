@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hu">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SuliSnack - Dashboard</title>
+    <title>SuliSnack - Dashboard Rendelések</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -11,6 +11,16 @@
     />
     <link rel="icon" type="image/x-icon" href="../pics/logo_nobg.png" />
     <link rel="stylesheet" href="orders.css" />
+    <style>
+      #global-alerts {
+        position: fixed;
+        bottom: 20px;
+        left: 88%;
+        transform: translateX(-50%);
+        z-index: 1050;
+        width: 400px;
+      }
+    </style>
   </head>
 
   <body>
@@ -47,9 +57,18 @@
           <div class="fw-bold">Nyitvatartás:</div>
           <div>H–P: 6:55 – 13:35</div>
         </div>
-        <button class="user-btn">TB</button>
+        <button class="user-btn" id="user-login"></button>
       </div>
     </nav>
+
+    <div id="user-popup" class="shadow-sm">
+      <div class="fw-bold mb-2 text-center" id="popup-username"></div>
+      <button id="logout-btn" class="btn btn-sm btn-outline-danger w-100">
+        Kijelentkezés
+      </button>
+    </div>
+
+    <div id="global-alerts"></div>
 
     <div class="container-fluid mt-4">
       <div class="row">
@@ -84,8 +103,7 @@
         </main>
       </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="dashboard.js"></script>
+    <script src="orders.js"></script>
   </body>
 </html>

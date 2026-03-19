@@ -32,6 +32,7 @@ const loginCheck = async (e) => {
   try {
     const response = await fetch("./login.php/login", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -57,16 +58,10 @@ const loginCheck = async (e) => {
       setTimeout(() => {
         clearInterval(interval);
         console.log(data);
-        if (data.role === "admin" || data.role === "bufes") {
-<<<<<<< HEAD
-          window.location.href = "../dashboard/orders.html";
-        } else {
-          window.location.href = "../products/orders.html";
-=======
+        if (data.user.role === "admin" || data.user.role === "bufes") {
           window.location.href = "../dashboard/orders/orders.html";
         } else {
-          window.location.href = "../main/products/products.html";
->>>>>>> 859b766 (master)
+          window.location.href = "../products/products.html";
         }
       }, 1200);
     } else {

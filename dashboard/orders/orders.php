@@ -12,14 +12,17 @@ switch (end($uri)) {
             return http_response_code(405);
         }
 
-        $querySQL = "SELECT rendeles.id AS id, rendeles.datumido AS datumido, termek.nev AS nev, termek.ar AS ar, rendeles.statusz_id AS statusz_id FROM `rendeles` INNER JOIN rendelestartalma ON rendeles.id = rendelestartalma.rend_id INNER JOIN termek ON rendelestartalma.term_id = termek.id ORDER BY rendeles.id DESC;";
+        $querySQL = "SELECT rendeles.id AS id, rendeles.datumido AS datumido, rendeles.statusz_id AS statusz_id FROM `rendeles` INNER JOIN rendelestartalma ON rendeles.id = rendelestartalma.rend_id GROUP BY rendeles.id ORDER BY rendeles.id DESC;";
         $query = dataQuery($querySQL);
 
-        if($query) {
-            echo json_encode($query);
-        } else {
-            return http_response_code(500);
+        foreach ($query as $key => $value) {
+            $query2SQL = "SELECT termek.nev, (termek.ar*rendelestartalma.mennyiseg) as ar FROM termek INNER JOIN rendelestartalma ON termek.id = rendelestartalma.term_id WHERE rendelestartalma.rend_id = ?";
+            $query2SQL = dataQuery($query2SQL, "i", [$value["id"]]);
+            
+            $query[$key]["termekek"] = $query2SQL;
         }
+
+        echo json_encode($query);
         
         break;
     
@@ -35,7 +38,7 @@ switch (end($uri)) {
         }
 
         $changeSQL = "UPDATE rendeles SET statusz_id = ? WHERE id = ?";
-        $change = dataChange($change, "ii", [$bodydatas["statusz_id"], $bodydatas["id"]]);
+        $change = dataChange($changeSQL, "ii", [$bodydatas["statusz_id"], $bodydatas["id"]]);
 
         if($change) {
             echo json_encode(["Sikeres módósítás!"], JSON_UNESCAPED_UNICODE);

@@ -1,15 +1,17 @@
 body {
-  background: #f5f7fb;
+  background: #2b2f36;
   font-family: "Inter", sans-serif;
+  color: #f1f1f1;
 }
 
 .navbar {
-  background: white !important;
+  background: #353a42 !important;
   border-radius: 16px;
   padding: 0.8rem 1.5rem;
   margin: 15px auto;
   width: 95%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar-brand img {
@@ -21,14 +23,15 @@ body {
   padding: 8px 16px !important;
   border-radius: 10px;
   transition: 0.2s;
+  color: #e4e4e4 !important;
 }
 
 .nav-link:hover {
-  background: #f0f2f7;
+  background: #414753;
 }
 
 .nav-link.active {
-  background: #4b7bec;
+  background: linear-gradient(135deg, #ff8c32, #ff3b3b);
   color: white !important;
 }
 
@@ -37,7 +40,7 @@ body {
   height: 45px;
   border-radius: 50%;
   font-weight: bold;
-  background: #4b7bec;
+  background: linear-gradient(135deg, #ff6a00, #ff3b3b);
   border: none;
   color: white;
   display: flex;
@@ -56,7 +59,7 @@ body {
 .page-title {
   font-size: 26px;
   font-weight: 700;
-  color: #2b2d42;
+  color: #ffffff;
 }
 
 .filter-bar {
@@ -67,30 +70,31 @@ body {
 
 .filter-btn {
   padding: 8px 18px;
-  border-radius: 12px;
-  background: white;
-  border: 2px solid #e4e7ee;
+  border-radius: 14px;
+  background: #3b4049;
+  border: 1px solid #4a505c;
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s;
+  color: #f1f1f1;
 }
 
 .filter-btn:hover {
-  background: #f2f4f8;
+  background: #464c58;
 }
 
 .filter-btn.active {
-  background: #4b7bec;
-  border-color: #4b7bec;
+  background: linear-gradient(135deg, #ff8c32, #ff3b3b);
+  border-color: transparent;
   color: white;
 }
 
 .orders-table {
   width: 100%;
-  background: white;
-  border-radius: 20px;
+  background: #3b4049;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
 .orders-table table {
@@ -99,78 +103,145 @@ body {
 }
 
 .orders-table thead {
-  background: #f7f9fc;
+  background: #414753;
 }
 
 .orders-table th {
   padding: 14px;
   font-weight: 600;
-  font-size: 14px;
-  color: #2f3640;
+  font-size: 13px;
+  color: #ffb27a;
   text-transform: uppercase;
 }
 
 .orders-table td {
   padding: 15px;
   font-size: 15px;
-  border-top: 1px solid #edf0f7;
+  border-top: 1px solid #4a505c;
+  color: #f1f1f1;
+}
+
+.orders-table tbody tr:hover {
+  background: #464c58;
+  cursor: pointer;
 }
 
 .status {
   padding: 6px 14px;
-  border-radius: 14px;
+  border-radius: 16px;
   font-weight: 600;
   font-size: 13px;
 }
 
 .status.done {
-  background: #d4f8d4;
-  color: #2b8a3e;
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
 }
 
 .status.in-progress {
-  background: #fff4c4;
-  color: #d1a100;
+  background: rgba(255, 140, 50, 0.25);
+  color: #ffb27a;
 }
 
 .status.waiting {
-  background: #ffe0e0;
-  color: #c23616;
-}
-
-.orders-table tbody tr:hover {
-  background: #f7faff;
-  cursor: pointer;
+  background: rgba(255, 59, 59, 0.25);
+  color: #ff7a7a;
 }
 
 .card {
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  background: white;
+  border-radius: 18px;
+  background: #3b4049;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  border: 1px solid #4a505c;
 }
 
 .card-title {
   font-weight: 600;
-  color: #333;
+  color: #ffb27a;
+}
+
+#user-popup {
+  position: absolute;
+  top: 100px;
+  right: 39px;
+  width: 240px;
+
+  background: #353a42;
+  border-radius: 16px;
+  padding: 14px;
+
+  display: none;
+  z-index: 2000;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  animation: fadeIn 0.25s ease;
+}
+
+#popup-username {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+#user-popup .btn {
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+#user-popup .btn-outline-primary {
+  background: #3b4049;
+  border: 1px solid #4a505c;
+  color: #f1f1f1;
+}
+
+#user-popup .btn-outline-primary:hover {
+  background: #464c58;
+  border-color: #5a606c;
+}
+
+#user-popup .btn-outline-danger {
+  background: rgba(255, 59, 59, 0.15);
+  border: 1px solid rgba(255, 59, 59, 0.4);
+  color: #ff7a7a;
+}
+
+#user-popup .btn-outline-danger:hover {
+  background: rgba(255, 59, 59, 0.35);
+  color: #fff;
 }
 
 form input,
 form select,
-form button,
 form textarea {
   border-radius: 12px;
+  background: #2b2f36;
+  border: 1px solid #4a505c;
+  color: #f1f1f1;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #ff8c32;
 }
 
 form button {
+  border-radius: 14px;
   font-weight: 600;
-}
-
-textarea {
-  resize: none;
+  background: linear-gradient(135deg, #ff6a00, #ff3b3b);
+  border: none;
+  color: white;
 }
 
 @media (max-width: 992px) {
@@ -194,11 +265,6 @@ textarea {
   .filter-btn {
     padding: 6px 14px;
   }
-
-  .user-btn {
-    width: 40px;
-    height: 40px;
-  }
 }
 
 .fade-in {
@@ -208,7 +274,7 @@ textarea {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(5px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;

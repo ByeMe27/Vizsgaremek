@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
-<<<<<<< HEAD
--- Létrehozás ideje: 2025. Nov 25. 11:42
-=======
--- Létrehozás ideje: 2025. Nov 27. 12:43
->>>>>>> 859b766 (master)
+-- Létrehozás ideje: 2025. Dec 16. 10:21
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -35,15 +31,7 @@ CREATE TABLE `felhasznalo` (
   `id` int(11) NOT NULL,
   `name` varchar(60) NOT NULL,
   `email` varchar(50) NOT NULL,
-<<<<<<< HEAD
--- <<<<<<< HEAD
--- `pwd` varchar(60) NOT NULL,
--- =======
-  `pwd` varchar(255) NOT NULL,
--- >>>>>>> 6e4e933c0754d47b8a720b008c07be2f72aacfb0
-=======
   `pwd` varchar(60) NOT NULL,
->>>>>>> 859b766 (master)
   `role` varchar(10) NOT NULL,
   `class` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
@@ -85,11 +73,9 @@ INSERT INTO `felhasznalo` (`id`, `name`, `email`, `pwd`, `role`, `class`) VALUES
 (31, 'das', 'sugarmartonlevente@gmail.com', '$2y$10$1KPicLlUpgx4KeRtPe0El.00bPW3WG4vpWEuwh8gzCuq8MKErKhG2', 'user', 'asd'),
 (32, 'TesztElek', 'testtest@gmail.com', '$2y$10$pZhq6t9clUnJpElB9ypAt.W8yBopqayV3.hDhU30JP3UhvC0LV0h.', 'user', 'asd'),
 (33, 'bufes', 'bufes@gmail.com', '$2y$10$WacGl0wGLYya9dMMNty2qONyytWxmW/k29AZOebXoyENw8aXJRpH2', 'bufes', 'Bufe'),
-<<<<<<< HEAD
-(34, 'admin', 'admin@gmail.com', '$2y$10$n4yplMoEb.EaZ.7uQOZ5yeHrhLoqRC62qExlrIpTacTF8ue2.mri2', 'admin', '-');
-=======
 (34, 'admin', 'admin@gmail.com', '$2y$10$n4yplMoEb.EaZ.7uQOZ5yeHrhLoqRC62qExlrIpTacTF8ue2.mri2', 'admin', '-'),
-(35, 'user', 'user@gmail.com', '$2y$10$EASwU3cOWkmyKa66sX7VPeEyZNF/kREuHPs/FjwcPVvK907pVE4ae', 'user', '13C');
+(35, 'user', 'user@gmail.com', '$2y$10$EASwU3cOWkmyKa66sX7VPeEyZNF/kREuHPs/FjwcPVvK907pVE4ae', 'user', '13C'),
+(36, 'das', 'asd11@gmail.com', '$2y$10$2d6O8mJkk2q2KZro16kqeO6j.6RZAUex9F5s3h0KZFrG9qLLem6vG', 'user', 'asd');
 
 -- --------------------------------------------------------
 
@@ -109,8 +95,7 @@ CREATE TABLE `menuk` (
 --
 
 INSERT INTO `menuk` (`id`, `name`, `price`, `img`) VALUES
-(5, 'Menü1', 1000, 'asd'),
-(7, 'menü2', 10000, 'asd');
+(9, 'asd', 10, '1765268816_Image_20251121_101222_784.jpeg');
 
 -- --------------------------------------------------------
 
@@ -129,13 +114,8 @@ CREATE TABLE `menutermek` (
 --
 
 INSERT INTO `menutermek` (`id`, `menu_id`, `termek_id`) VALUES
-(1, 5, 38),
-(2, 5, 38),
-(3, 5, 9),
-(4, 5, 9),
-(5, 7, 9),
-(7, 7, 9);
->>>>>>> 859b766 (master)
+(9, 9, 9),
+(10, 9, 18);
 
 -- --------------------------------------------------------
 
@@ -156,17 +136,11 @@ CREATE TABLE `rendeles` (
 
 INSERT INTO `rendeles` (`id`, `felh_id`, `datumido`, `statusz_id`) VALUES
 (1, 2, '2025-11-11 18:08:12', 4),
-(2, 4, '2025-11-12 08:30:08', 2),
-(3, 2, '2025-11-13 09:10:12', 2),
-(4, 3, '2025-11-13 10:05:44', 3),
-(5, 4, '2025-11-13 11:22:18', 4),
-(6, 6, '2025-11-13 12:40:55', 2),
 (7, 8, '2025-11-13 13:14:33', 1),
 (8, 9, '2025-11-13 14:59:01', 2),
 (9, 10, '2025-11-13 15:32:47', 3),
 (10, 11, '2025-11-13 16:17:26', 4),
 (11, 12, '2025-11-13 17:48:52', 2),
-(12, 13, '2025-11-13 18:22:38', 1),
 (13, 14, '2025-11-13 19:01:11', 3),
 (14, 2, '2025-11-14 07:24:06', 2),
 (15, 3, '2025-11-14 07:45:29', 4),
@@ -174,7 +148,6 @@ INSERT INTO `rendeles` (`id`, `felh_id`, `datumido`, `statusz_id`) VALUES
 (17, 6, '2025-11-14 08:22:37', 1),
 (18, 8, '2025-11-14 08:35:50', 2),
 (19, 9, '2025-11-14 08:49:02', 3),
-(20, 10, '2025-11-14 09:03:17', 4),
 (21, 11, '2025-11-14 09:14:51', 2),
 (22, 12, '2025-11-14 09:28:09', 1);
 
@@ -190,34 +163,6 @@ CREATE TABLE `rendelestartalma` (
   `rend_id` int(11) NOT NULL,
   `mennyiseg` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `rendelestartalma`
---
-
-INSERT INTO `rendelestartalma` (`id`, `term_id`, `rend_id`, `mennyiseg`) VALUES
-(2, 1, 1, 1),
-(3, 4, 2, 2),
-(4, 2, 3, 1),
-(5, 5, 4, 2),
-(6, 7, 5, 1),
-(7, 1, 6, 3),
-(8, 3, 7, 1),
-(9, 8, 8, 2),
-(10, 4, 9, 1),
-(11, 6, 10, 2),
-(12, 2, 11, 1),
-(13, 9, 12, 1),
-(14, 3, 13, 2),
-(15, 7, 14, 1),
-(16, 8, 15, 1),
-(17, 5, 16, 3),
-(18, 4, 17, 1),
-(19, 6, 18, 2),
-(20, 1, 19, 1),
-(21, 9, 20, 2),
-(22, 3, 21, 1),
-(23, 7, 22, 1);
 
 -- --------------------------------------------------------
 
@@ -251,11 +196,7 @@ CREATE TABLE `termek` (
   `nev` varchar(50) NOT NULL,
   `kategoria` varchar(20) NOT NULL,
   `leiras` varchar(200) NOT NULL,
-<<<<<<< HEAD
-  `foto` varchar(100) NOT NULL,
-=======
   `img` varchar(255) NOT NULL,
->>>>>>> 859b766 (master)
   `ar` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
@@ -263,26 +204,10 @@ CREATE TABLE `termek` (
 -- A tábla adatainak kiíratása `termek`
 --
 
-<<<<<<< HEAD
-INSERT INTO `termek` (`id`, `nev`, `kategoria`, `leiras`, `foto`, `ar`) VALUES
-=======
 INSERT INTO `termek` (`id`, `nev`, `kategoria`, `leiras`, `img`, `ar`) VALUES
->>>>>>> 859b766 (master)
-(1, 'Narancsos bukta', 'édesség', 'friss bukta, narancsos dzsemmel töltve', 'xyz', 650),
-(2, 'Coca Cola 250ml', 'üdítő', 'friisítő folyékony kátrány', 'xyz', 400),
-(3, 'Sonkás-sajtos szendvics', 'szendvics', 'Sajt, sonka, saláta, vaj, szeretet', 'xyz', 600),
-(4, 'Túró rudi', 'snack', 'turos rudi cucc', 'xyz', 300),
-(5, 'Brownie', 'édesség', 'csokis csoda', 'xyz', 850),
-(6, 'Xixo Ice Tea eper 250ml', 'üdítő', 'frissítő tea', 'xyz', 400),
-(7, 'Melegszendvics', 'szendvics', 'sonka, sajt, ketchup választható', 'xyz', 800),
-(8, 'Tibi csoki', 'édesség', 'Klasszikus tejcsokoládé kedvenc ízben.', 'xyz', 350),
 (9, 'Balaton szelet', 'édesség', 'Ropogós ostya csokoládébevonattal.', 'xyz', 290),
-(10, 'Oreo keksz', 'édesség', 'Kakaós keksz vaníliás krémmel töltve.', 'xyz', 450),
-(11, 'Coca-Cola 0.5L', 'üdítő', 'Frissítő szénsavas ital klasszikus ízzel.', 'xyz', 490),
 (12, 'Fanta Narancs 0.5L', 'üdítő', 'Gyümölcsös üdítőital narancs ízben.', 'xyz', 480),
-(13, 'Jeges tea citromos', 'üdítő', 'Hűsítő citromos fekete tea.', 'xyz', 420),
 (14, 'Sonkás szendvics', 'szendvics', 'Friss zsemlében sonka, sajt és saláta.', 'xyz', 890),
-(15, 'Tavaszi szendvics', 'szendvics', 'Könnyű, zöldséges szendvics vajkrémmel.', 'xyz', 850),
 (16, 'Csirkés bagett', 'szendvics', 'Meleg csirkemelles bagett friss zöldségekkel.', 'xyz', 990),
 (17, 'Sós mogyoró', 'snack', 'Klasszikus sós pörkölt mogyoró.', 'xyz', 350),
 (18, 'Chips sajtos', 'snack', 'Ropogós burgonyachips sajtos ízesítéssel.', 'xyz', 420),
@@ -309,8 +234,10 @@ INSERT INTO `termek` (`id`, `nev`, `kategoria`, `leiras`, `img`, `ar`) VALUES
 (39, 'Forró csoki', 'kávé', 'Selymes forró csokoládé hideg napokra.', 'xyz', 620),
 (40, 'Kinder Bueno', 'édesség', 'Krémes mogyorós töltelék ropogós ostyában.', 'xyz', 450),
 (41, 'M&M\'s', 'édesség', 'Színes cukorbevonatú csokigolyók.', 'xyz', 470),
-(42, 'Lipton zöld tea 0.5L', 'üdítő', 'Frissítő zöld tea citrommal.', 'xyz', 430),
-(43, 'Ice Coffee dobozos', 'kávé', 'Hideg kávé tejjel, dobozban.', 'xyz', 560);
+(49, 'Ármin', 'dik', 'XD', '1764929916_Image_20251121_100010_248.jpeg', 100),
+(50, 'sd', 'dik', 'XD', '1764929931_Képkivágás.PNG', 100),
+(51, 'Csokis csigusz', 'édesség', 'finom csokis csiga', '1764930055_asd.png', 999),
+(53, 'papa kedvence', 'édesség', 'papsmoke kedvence', '1765276555_image1.png', 800);
 
 -- --------------------------------------------------------
 
@@ -365,8 +292,6 @@ ALTER TABLE `felhasznalo`
   ADD PRIMARY KEY (`id`);
 
 --
-<<<<<<< HEAD
-=======
 -- A tábla indexei `menuk`
 --
 ALTER TABLE `menuk`
@@ -381,7 +306,6 @@ ALTER TABLE `menutermek`
   ADD KEY `termek` (`termek_id`);
 
 --
->>>>>>> 859b766 (master)
 -- A tábla indexei `rendeles`
 --
 ALTER TABLE `rendeles`
@@ -424,23 +348,19 @@ ALTER TABLE `visszajelzes`
 -- AUTO_INCREMENT a táblához `felhasznalo`
 --
 ALTER TABLE `felhasznalo`
-<<<<<<< HEAD
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT a táblához `menuk`
 --
 ALTER TABLE `menuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT a táblához `menutermek`
 --
 ALTER TABLE `menutermek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
->>>>>>> 859b766 (master)
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT a táblához `rendeles`
@@ -452,13 +372,13 @@ ALTER TABLE `rendeles`
 -- AUTO_INCREMENT a táblához `rendelestartalma`
 --
 ALTER TABLE `rendelestartalma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT a táblához `termek`
 --
 ALTER TABLE `termek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT a táblához `visszajelzes`
@@ -471,8 +391,6 @@ ALTER TABLE `visszajelzes`
 --
 
 --
-<<<<<<< HEAD
-=======
 -- Megkötések a táblához `menutermek`
 --
 ALTER TABLE `menutermek`
@@ -480,7 +398,6 @@ ALTER TABLE `menutermek`
   ADD CONSTRAINT `menutermek_ibfk_3` FOREIGN KEY (`menu_id`) REFERENCES `menuk` (`id`);
 
 --
->>>>>>> 859b766 (master)
 -- Megkötések a táblához `rendeles`
 --
 ALTER TABLE `rendeles`

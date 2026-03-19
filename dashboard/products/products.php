@@ -16,11 +16,7 @@ switch (end($uri)) {
         $requestproductsSQL = "SELECT nev, kategoria, leiras, img, ar FROM termek ORDER BY id DESC";
         $requestproducts = dataQuery($requestproductsSQL);
 
-        if ($requestproducts) {
-            echo json_encode($requestproducts, JSON_UNESCAPED_UNICODE);
-        } else {
-            http_response_code(500);
-        }
+        echo json_encode($requestproducts, JSON_UNESCAPED_UNICODE);
         break;
 
     case 'select':
@@ -32,15 +28,11 @@ switch (end($uri)) {
         $productSQL = "SELECT id, nev FROM termek;";
         $product = dataQuery($productSQL);
 
-        if ($product) {
             echo json_encode($product, JSON_UNESCAPED_UNICODE);
-        } else {
-            http_response_code(500);
-        }
 
         break;
 
-    case 'upload':
+    case 'upload':  
         if ($method != "POST") {
             http_response_code(405);
             return;
@@ -88,12 +80,8 @@ switch (end($uri)) {
         $uploadSQL = "INSERT INTO termek (nev, kategoria, leiras, img, ar) VALUES (?, ?, ?, ?, ?)";
         $upload = dataChange($uploadSQL, "ssssi", [$nev, $kategoria, $leiras, $filename, $ar]);
 
-        if ($upload) {
             echo json_encode(["Siker" => "Sikeres feltöltés!"], JSON_UNESCAPED_UNICODE);
-        } else {
-            http_response_code(500);
-            echo json_encode(["Hiba" => "Adatbázis hiba!"], JSON_UNESCAPED_UNICODE);
-        }
+
 
         break;
 
@@ -110,11 +98,7 @@ switch (end($uri)) {
         $changeSQL = "UPDATE termek SET nev = ?, kategoria = ?, leiras = ?, ar = ? WHERE id = ?";
         $change = dataChange($changeSQL, "sssii", [$bodydatas["nev"], $bodydatas["kategoria"], $bodydatas["leiras"], $bodydatas["ar"], $bodydatas["id"]]);
 
-        if ($change) {
             echo json_encode(["Sikeres módosítás!"], JSON_UNESCAPED_UNICODE);
-        } else {
-            return http_response_code(500);
-        }
 
         break;
 
@@ -131,12 +115,8 @@ switch (end($uri)) {
         $deleteSQL = "DELETE FROM termek WHERE id = ?";
         $delete = dataChange($deleteSQL, "s", [$bodydatas["id"]]);
 
-        if ($delete) {
             echo json_encode(["Sikeres törlés!"], JSON_UNESCAPED_UNICODE);
-        }
-        else {
-            return http_response_code(500);
-        }
+
 
         break;
 }
