@@ -11,8 +11,7 @@ switch (end($uri)) {
         if($method != "GET") return http_response_code(405);
         
         $minden_SQL = "
-            SELECT m.id, m.name, m.price, m.img,
-                   GROUP_CONCAT(t.nev SEPARATOR ', ') AS termekek
+            SELECT m.id, m.name, m.price, m.img, GROUP_CONCAT(t.nev SEPARATOR ', ') AS termekek
             FROM menuk m
             LEFT JOIN menutermek mt ON mt.menu_id = m.id
             LEFT JOIN termek t ON t.id = mt.termek_id

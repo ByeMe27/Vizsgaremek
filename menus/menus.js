@@ -1,5 +1,7 @@
 let errordiv = document.getElementById("errordiv");
 let menus_container = document.getElementById("menus-container")
+let kosardiv = document.getElementById("cart-content");
+let kosar = [];
 async function menukBetolt(){
   try {
     let res = await fetch("./menus.php/minden");
@@ -15,9 +17,12 @@ async function menukBetolt(){
           <div class="card shadow-sm w-100">
             <img src="../dashboard/menus/uploads/${menu.img}" class="card-img-top" style="height:200px; object-fit:cover;" alt="${menu.name}">
             <div class="card-body d-flex flex-column">
-              <h5 class="card-title">${menu.name}</h5>
+              <h5 class="card-title menu-name">${menu.name}</h5>
               <p class="card-text">${menu.termekek}</p>
-              <p class="fw-bold mt-auto">${menu.price} Ft</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="fw-bold">${menu.price} Ft</span>
+                <button class="btn btn-sm to-cart" data-id="${menu.id}" data-nev="${menu.name}" data-ar="${menu.price}">Kosárba</button>
+              </div>
             </div>
           </div>
         </div>
@@ -32,6 +37,75 @@ async function menukBetolt(){
   }
 }
 window.addEventListener("load", menukBetolt)
+
+
+menus_container.addEventListener("click", function (event) {
+  if (!event.target.classList.contains("to-cart")) return;
+
+  let btn = event.target;
+
+  let termek = {
+    id: Number(btn.dataset.id),
+    nev: btn.dataset.nev,
+    ar: Number(btn.dataset.ar),
+  };
+
+  kosarbaRakas(termek);
+});
+
+function kosarbaRakas(termek) {
+  let index = kosar.findIndex((t) => t.id === termek.id);
+
+  if (index != -1) {
+    kosar[index].db++;
+  } else {
+    kosar.push({
+      id: termek.id,
+      nev: termek.nev,
+      ar: termek.ar,
+      db: 1,
+    });
+  }
+
+  kosarBetolt();
+}
+
+function kosarBetolt() {
+  if (kosar.length == 0) {
+    kosardiv.innerHTML = "A kosár jelenleg üres";
+    return;
+  }
+
+  let stringbe = "";
+  
+  let osszeg = 0;
+
+  for (const elem of kosar) {
+    let reszosszeg = elem.ar * elem.db;
+    osszeg += reszosszeg;
+
+    stringbe += `
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <strong>${elem.nev}</strong><br>
+          <small>${elem.db} x ${elem.ar}</small>
+        </div>
+        <div class="fw-bold">
+          ${reszosszeg} Ft
+        </div>
+      </div>  
+    `;
+  }
+
+  document.getElementById("cart-price").innerHTML = `
+    <hr>
+    <div class="d-flex justify-content-between fw-bold">
+      <span>Összesen: ${osszeg} Ft</span>
+    </div>
+  `;
+
+  kosardiv.innerHTML = stringbe;
+}
 
 
 

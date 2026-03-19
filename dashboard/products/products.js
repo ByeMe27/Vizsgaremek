@@ -131,7 +131,13 @@ async function changeProduct() {
     const response = await fetch("./products.php/change", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, nev, kategoria, leiras, ar }),
+      body: JSON.stringify({
+        "nev" : nev,
+        "kategoria" : kategoria,
+        "id" : id, 
+        "leiras" : leiras,
+        "ar" : ar
+      }),
     });
     const data = await response.json();
 

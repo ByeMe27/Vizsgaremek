@@ -115,7 +115,7 @@ body {
   transition: 0.2s;
 }
 
-#product-name {
+.menu-name {
   font-weight: 600;
   color: #ffb27a;
 }
