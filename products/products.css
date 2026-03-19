@@ -111,8 +111,8 @@ body {
 /* TERMÉK KÉPEK FIX MÉRETTEL */
 .card img {
   width: 100%;
-  height: 150px; /* fix magasság */
-  object-fit: cover; /* nem torzul, inkább levág */
+  height: 180px; /* fix magasság */
+  object-fit: contain; /* nem torzul, inkább levág */
   border-radius: 12px;
   margin-bottom: 10px;
 }
