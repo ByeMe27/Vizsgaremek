@@ -29,12 +29,12 @@ async function loadProducts() {
     products.forEach((product) => {
       // kep forrasa relativra valtoztatva
       row.innerHTML += `
-        <div class="col-md-4 mb-4 d-flex">
+        <div class="col-md-3 mb-4 d-flex">
           <div class="card shadow-sm w-100">
             <img src="./uploads/${product.img}"
                  class="card-img-top"
                  alt="${product.nev}"
-                 style="object-fit: cover; height: 200px; border-radius: 16px 16px 0 0;">
+                 style="object-fit: contain; height: 200px; border-radius: 16px 16px 0 0;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">${product.nev}</h5>
               <h6 class="card-subtitle mb-2 text-muted">${product.kategoria}</h6>
