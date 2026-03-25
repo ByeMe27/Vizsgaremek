@@ -1,6 +1,6 @@
 <?php
 
-function adatokLekerese($muvelet, $tipusok = null, $adatok = null) {
+function dataQuery($muvelet, $tipusok = null, $adatok = null) {
 
     $db = new mysqli("localhost", "root", "", "bufe");
 
@@ -30,7 +30,7 @@ function adatokLekerese($muvelet, $tipusok = null, $adatok = null) {
 
 }
 
-function adatokvaltoztatasa($muvelet, $tipusok = null, $adatok = null) {
+function dataChange($muvelet, $tipusok = null, $adatok = null) {
 
     $db = new mysqli("localhost", "root", "", "bufe");
 

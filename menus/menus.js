@@ -1,14 +1,14 @@
 let errordiv = document.getElementById("errordiv");
-let menus_container = document.getElementById("menus-container")
+let menus_container = document.getElementById("menus-container");
 let kosardiv = document.getElementById("cart-content");
 let kosar = [];
-async function menukBetolt(){
+async function menukBetolt() {
   try {
     let res = await fetch("./menus.php/minden");
     let Data = await res.json();
 
-    if(!res.ok){
-      throw Data.valasz
+    if (!res.ok) {
+      throw Data.valasz;
     }
 
     for (const menu of Data) {
@@ -28,16 +28,13 @@ async function menukBetolt(){
         </div>
       `;
     }
-    
-    
   } catch (error) {
     errordiv.hidden = false;
     errordiv.innerHTML = error;
     errordiv.className = "alert alert-danger";
   }
 }
-window.addEventListener("load", menukBetolt)
-
+window.addEventListener("load", menukBetolt);
 
 menus_container.addEventListener("click", function (event) {
   if (!event.target.classList.contains("to-cart")) return;
@@ -77,7 +74,7 @@ function kosarBetolt() {
   }
 
   let stringbe = "";
-  
+
   let osszeg = 0;
 
   for (const elem of kosar) {
@@ -106,42 +103,6 @@ function kosarBetolt() {
 
   kosardiv.innerHTML = stringbe;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //////////////////SESSION
 
@@ -179,7 +140,7 @@ logoutBtn.addEventListener("click", async () => {
 
 profileBtn.addEventListener("click", async () => {
   try {
-    window.location.href = "../profile/profile.html";
+    window.location.href = "profile/profile.html";
   } catch (err) {
     showGlobalAlert(err.message, "danger");
   }

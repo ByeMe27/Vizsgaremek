@@ -3,10 +3,17 @@ function showGlobalAlert(message, type = "success", duration = 5000) {
   const alert = document.createElement("div");
   alert.className = `alert alert-${type} shadow-sm`;
   alert.style.marginBottom = "10px";
+  alert.style.backgroundColor =
+    type === "success" ? "#01a828" : type === "danger" ? "#b82632" : "#947615";
+  alert.style.color = "#fff";
+  alert.style.padding = "10px 15px";
+  alert.style.borderRadius = "8px";
+  alert.style.transition = "opacity 0.5s, transform 0.5s";
   alert.innerText = message;
+
   container.appendChild(alert);
+
   setTimeout(() => {
-    alert.style.transition = "opacity 0.5s, transform 0.5s";
     alert.style.opacity = "0";
     alert.style.transform = "translateY(20px)";
     setTimeout(() => alert.remove(), 500);
@@ -22,7 +29,7 @@ function getStatusColor(statusz_id) {
     case 4:
       return "#01a828";
     default:
-      return "#f8f9fa";
+      return "#3b4049";
   }
 }
 
@@ -39,7 +46,7 @@ async function changeOrderStatus(id, statusz_id, card) {
     card.style.backgroundColor = getStatusColor(statusz_id);
     showGlobalAlert("Státusz módosítva!", "success");
 
-    if (statusz_id == 4) {
+    if (parseInt(statusz_id) === 4) {
       setTimeout(() => {
         card.style.transition = "opacity 1s, transform 1s";
         card.style.opacity = "0";
@@ -77,7 +84,7 @@ async function loadOrders() {
     const res = await fetch("./orders.php/query");
     if (!res.ok) throw new Error("Jelenleg nincsenek rendelések!");
     const orders = await res.json();
-    console.log(orders);
+
     const cardsContainer = document.getElementById("cards");
     cardsContainer.innerHTML = "";
 
@@ -91,10 +98,10 @@ async function loadOrders() {
         <div>
           <strong>ID:</strong> ${order.id} <br>
           <strong>Dátum:</strong> ${order.datumido} <br>
-          <strong>Termék:</strong> ${order.termekek.map((termek) => {
-            return " " + termek.nev;
-          })} <br>
-          <strong>Ár:</strong> ${order.termekek.reduce((total, current) => (total += current.ar), 0)} Ft
+          <strong>Termék:</strong> ${order.termekek
+            .map((t) => `${t.nev} (${t.mennyiseg}db)`)
+            .join(", ")} <br>
+          <strong>Ár:</strong> ${order.termekek.reduce((total, t) => total + t.ar, 0)} Ft
         </div>
         <div class="d-flex gap-1 flex-column flex-md-row">
           <button class="btn btn-sm btn-danger delete-btn">Törlés</button>
@@ -109,99 +116,31 @@ async function loadOrders() {
       card
         .querySelector(".delete-btn")
         .addEventListener("click", () => deleteOrder(order.id));
-      card.querySelectorAll(".status-btn").forEach((btn) => {
-        btn.addEventListener("click", () =>
-          changeOrderStatus(order.id, btn.dataset.status, card),
+      card
+        .querySelectorAll(".status-btn")
+        .forEach((btn) =>
+          btn.addEventListener("click", () =>
+            changeOrderStatus(order.id, btn.dataset.status, card),
+          ),
         );
-      });
     });
-
-    applyFilters();
   } catch (error) {
     console.error(error);
     showGlobalAlert(error.message, "danger");
   }
 }
 
-function applyFilters() {
-  const qId = document.getElementById("q-id").value.trim();
-  const qName = document.getElementById("q-name").value.trim().toLowerCase();
-  const qClass = document.getElementById("q-class").value.trim().toLowerCase();
-
-  document.querySelectorAll("#cards .card").forEach((card) => {
-    const text = card.innerText.toLowerCase();
-    const match =
-      !qId ||
-      text.includes(qId) ||
-      !qName ||
-      text.includes(qName) ||
-      !qClass ||
-      text.includes(qClass);
-    card.style.display = match ? "flex" : "none";
-  });
-}
-
-function setupSearch() {
-  document.getElementById("searchBtn").addEventListener("click", applyFilters);
-  document.getElementById("resetBtn").addEventListener("click", () => {
-    document.getElementById("q-id").value = "";
-    document.getElementById("q-name").value = "";
-    document.getElementById("q-class").value = "";
-    applyFilters();
-  });
-}
-
-const userBtnEl = document.getElementById("user-login");
-const userPopup = document.getElementById("user-popup");
-const popupUsername = document.getElementById("popup-username");
-const logoutBtn = document.getElementById("logout-btn");
-
-userBtnEl.addEventListener("click", (e) => {
-  e.stopPropagation();
-  userPopup.style.display =
-    userPopup.style.display === "block" ? "none" : "block";
-});
-
-document.addEventListener("click", (e) => {
-  if (!userPopup.contains(e.target) && e.target !== userBtnEl) {
-    userPopup.style.display = "none";
-  }
-});
-
+const logoutBtn = document.getElementById("logoutBtn");
 logoutBtn.addEventListener("click", async () => {
   try {
     const res = await fetch("../../login/login.php/logout", {
       credentials: "include",
     });
-
     if (!res.ok) throw new Error("Kijelentkezés sikertelen");
-
     window.location.href = "../../login/login.html";
   } catch (err) {
     showGlobalAlert(err.message, "danger");
   }
 });
 
-async function userBtn() {
-  const res = await fetch("../../login/login.php/me");
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.Hiba || "Hiba történt!");
-  console.log(data);
-  userBtnEl.innerHTML =
-    data.name.split(" ")[0].charAt(0).toString().toUpperCase() +
-    data.name.split(" ")[1].charAt(0).toString().toUpperCase();
-}
-
-async function userName() {
-  const res = await fetch("../../login/login.php/me");
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.Hiba || "Hiba történt!");
-  popupUsername.innerHTML += `Helló, ${data.name}!`;
-}
-
-window.addEventListener("DOMContentLoaded", async () => {
-  await loadOrders();
-  setupSearch();
-  await userBtn();
-  await userName();
-});
+window.addEventListener("DOMContentLoaded", loadOrders);

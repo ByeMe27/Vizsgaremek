@@ -137,7 +137,6 @@ function kosarBetolt() {
   }
 
   let stringbe = "";
-  ;
   let osszeg = 0;
 
   for (const elem of kosar) {
@@ -167,48 +166,41 @@ function kosarBetolt() {
   kosardiv.innerHTML = stringbe;
 }
 
-
-
 ///////////////////////////////////////////////     RENDELÉS LEADÁS     /////////////////////////////////////////
 async function rendeles() {
-  document.getElementById("cart-price").innerHTML = ""
-  if(kosar.lenght == 0){
-    kosardiv.innerHTML = "A kosár üres!"
+  document.getElementById("cart-price").innerHTML = "";
+  if (kosar.lenght == 0) {
+    kosardiv.innerHTML = "A kosár üres!";
     return;
   }
 
   try {
-    let res = await fetch("./products.php/rendeles",{
-      method : "POST",
-      headers : {"Content-Type" : "application/json"},
-      body : JSON.stringify(
+    let res = await fetch("./products.php/rendeles", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(
         kosar.map((t) => ({
-          "id" : t.id,
-          "db" : t.db
-        }))
-      )
-    })
+          id: t.id,
+          db: t.db,
+        })),
+      ),
+    });
 
     let data = await res.json();
 
-    if(!res.ok){
-      throw new Error(data.valasz || "Váratlan hiba történt!")
+    if (!res.ok) {
+      throw new Error(data.valasz || "Váratlan hiba történt!");
     }
 
-    kosardiv.innerHTML = 
-      `<div role="alert" class="alert alert-success">
+    kosardiv.innerHTML = `<div role="alert" class="alert alert-success">
         Rendelés sikeresen leadva! <br> A Rendeléseim menüpontban nyomon követheted a rendeléseidet!
       </div>`;
     kosar = [];
-    
-
   } catch (error) {
     kosardiv.innerHTML = `<div role="alert" class="alert alert-danger">Hiba a rendelés során: ${error.message}</div>`;
-    document.getElementById("cart-price").innerHTML = ""
+    document.getElementById("cart-price").innerHTML = "";
   }
-
 }
-
 
 //////////////////SESSION
 
@@ -246,7 +238,7 @@ logoutBtn.addEventListener("click", async () => {
 
 profileBtn.addEventListener("click", async () => {
   try {
-    window.location.href = "../profile/profile.html";
+    window.location.href = "profile/profile.html";
   } catch (err) {
     showGlobalAlert(err.message, "danger");
   }
