@@ -16,7 +16,7 @@ switch (end($uri)) {
         $query = dataQuery($querySQL);
 
         foreach ($query as $key => $value) {
-            $query2SQL = "SELECT termek.nev, (termek.ar*rendelestartalma.mennyiseg) as ar FROM termek INNER JOIN rendelestartalma ON termek.id = rendelestartalma.term_id WHERE rendelestartalma.rend_id = ?";
+            $query2SQL = "SELECT termek.nev, (termek.ar*rendelestartalma.mennyiseg) as ar, mennyiseg FROM termek INNER JOIN rendelestartalma ON termek.id = rendelestartalma.term_id WHERE rendelestartalma.rend_id = ?";
             $query2SQL = dataQuery($query2SQL, "i", [$value["id"]]);
             
             $query[$key]["termekek"] = $query2SQL;

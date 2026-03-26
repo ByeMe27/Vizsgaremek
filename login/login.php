@@ -63,11 +63,13 @@ switch (end($uri)) {
             echo json_encode(["loggedIn" => false]);
             return;
         }
-
+        $usersessionSQL = "SELECT name, role FROM felhasznalo WHERE id = ?";
+        $usersession = dataQuery($usersessionSQL, "s", [$_SESSION["user_id"]]);
+        $user = $usersession[0];
         echo json_encode([
             "loggedIn" => true,
-            "name" => $_SESSION["name"],
-            "role" => $_SESSION["role"]
+            "name" => $user["name"],
+            "role" => $user["role"]
         ]);
         return;
 

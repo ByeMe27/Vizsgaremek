@@ -217,10 +217,10 @@ CREATE TABLE `statusz` (
 --
 
 INSERT INTO `statusz` (`id`, `nev`) VALUES
-(1, 'kosárban'),
-(2, 'leadva'),
-(3, 'átvehető'),
-(4, 'átvéve');
+(1, 'Kosárban'),
+(2, 'Leadva'),
+(3, 'Átvehető'),
+(4, 'Átvéve');
 
 -- --------------------------------------------------------
 

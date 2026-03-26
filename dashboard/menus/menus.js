@@ -189,22 +189,7 @@ document.getElementById("deleteBtn").addEventListener("click", (e) => {
   deleteMenu();
 });
 
-const userBtnEl = document.getElementById("user-login");
-const userPopup = document.getElementById("user-popup");
-const popupUsername = document.getElementById("popup-username");
-const logoutBtn = document.getElementById("logout-btn");
-
-userBtnEl.addEventListener("click", (e) => {
-  e.stopPropagation();
-  userPopup.style.display =
-    userPopup.style.display === "block" ? "none" : "block";
-});
-
-document.addEventListener("click", (e) => {
-  if (!userPopup.contains(e.target) && e.target !== userBtnEl) {
-    userPopup.style.display = "none";
-  }
-});
+const logoutBtn = document.getElementById("logoutBtn");
 
 logoutBtn.addEventListener("click", async () => {
   try {
@@ -219,23 +204,6 @@ logoutBtn.addEventListener("click", async () => {
     showGlobalAlert(err.message, "danger");
   }
 });
-
-async function userBtn() {
-  const res = await fetch("../../login/login.php/me");
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.Hiba || "Hiba történt!");
-  console.log(data);
-  userBtnEl.innerHTML =
-    data.name.split(" ")[0].charAt(0).toString().toUpperCase() +
-    data.name.split(" ")[1].charAt(0).toString().toUpperCase();
-}
-
-async function userName() {
-  const res = await fetch("../../login/login.php/me");
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.Hiba || "Hiba történt!");
-  popupUsername.innerHTML += `Helló, ${data.name}!`;
-}
 
 window.addEventListener("DOMContentLoaded", async () => {
   await loadSelectProducts();
