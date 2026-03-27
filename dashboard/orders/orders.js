@@ -1,9 +1,13 @@
 function getStatusBorder(statusz_id) {
   switch (parseInt(statusz_id)) {
-    case 2: return "1px solid rgba(255, 0, 0, 0.9)";
-    case 3: return "1px solid rgba(255, 140, 50, 0.5)";
-    case 4: return "1px solid rgba(46, 204, 113, 0.5)";
-    default: return "1px solid #3e4450";
+    case 2:
+      return "1px solid rgba(255, 0, 0, 0.9)";
+    case 3:
+      return "1px solid rgba(255, 140, 50, 0.5)";
+    case 4:
+      return "1px solid rgba(46, 204, 113, 0.5)";
+    default:
+      return "1px solid #3e4450";
   }
 }
 
@@ -20,13 +24,13 @@ async function changeOrderStatus(id, statusz_id, card) {
     card.style.border = getStatusBorder(statusz_id);
 
     if (parseInt(statusz_id) === 4) {
-      setTimeout(() => {
+      setTimeout(async () => {
         card.style.transition = "opacity 1s, transform 1s";
         card.style.opacity = "0";
         card.style.transform = "translateY(40px)";
         setTimeout(async () => {
-          await deleteOrder(id);
-        }, 1000);
+          await loadOrders();
+        }, 500);
       }, 5000);
     }
   } catch (err) {
@@ -104,8 +108,8 @@ async function loadOrders() {
         .querySelectorAll(".status-btn")
         .forEach((btn) =>
           btn.addEventListener("click", () =>
-            changeOrderStatus(order.id, btn.dataset.status, card)
-          )
+            changeOrderStatus(order.id, btn.dataset.status, card),
+          ),
         );
     });
   } catch (error) {

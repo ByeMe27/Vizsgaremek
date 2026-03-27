@@ -25,9 +25,9 @@ async function loadMenus() {
 
     menus.forEach((menu) => {
       row.innerHTML += `
-        <div class="col-md-4 mb-4 d-flex">
+        <div class="col-md-3 mb-4 d-flex">
           <div class="card shadow-sm w-100">
-            <img src="uploads/${menu.img}" class="card-img-top" style="height:200px; object-fit:cover;" alt="${menu.name}">
+            <img src="uploads/${menu.img}" class="card-img-top" style="height:200px; object-fit:contain;" alt="${menu.name}">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">${menu.name}</h5>
               <p class="card-text">${menu.termekek}</p>
@@ -122,6 +122,7 @@ async function createMenu() {
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.Hiba || "Hiba történt!");
+    document.getElementById("form").reset();
 
     showGlobalAlert(data.Siker, "success");
     await loadMenuSelect();
@@ -144,19 +145,27 @@ async function changeMenu() {
       body: JSON.stringify({ id, name, price }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.Hiba || "Hiba történt!");
+    if (!res.ok) {
+      return showGlobalAlert(data.Hiba || "Hiba történt!", "danger");
+    }
+    document.getElementById("form2").reset();
 
     showGlobalAlert(data.Siker, "success");
     await loadMenuSelect();
     await loadMenus();
   } catch (error) {
     console.error(error);
-    showGlobalAlert(error.message, "danger");
+    showGlobalAlert(error.Error, "danger");
   }
 }
 
 async function deleteMenu() {
   const id = document.getElementById("deleteSelect").value;
+  const deleteReason = document.getElementById("deleteReason");
+
+  if (deleteReason.value == "") {
+    return showGlobalAlert("Hiányzó adat!", "danger");
+  }
 
   try {
     const res = await fetch("./menus.php/delete", {
@@ -165,7 +174,8 @@ async function deleteMenu() {
       body: JSON.stringify({ id }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.Hiba || "Hiba történt!");
+    if (!res.ok) return showGlobalAlert(data.Hiba || "Hiba történt!");
+    document.getElementById("form3").reset();
 
     showGlobalAlert(data.Siker, "success");
     await loadMenuSelect();
@@ -205,10 +215,23 @@ logoutBtn.addEventListener("click", async () => {
   }
 });
 
+async function loadCurrent() {
+  const changeSelect = document.getElementById("changeSelect").value;
+  let changename = document.getElementById("changeName");
+  let changeprice = document.getElementById("changePrice");
+  const res = await fetch("./menus.php/dataquery?id=" + changeSelect);
+  if (!res.ok) throw new Error("Hiba a termékek lekérésekor.");
+  const data = await res.json();
+
+  changename.value = data[0].name;
+  changeprice.value = data[0].price;
+}
+
+const changeSelect = document.getElementById("changeSelect");
+changeSelect.addEventListener("change", loadCurrent);
+
 window.addEventListener("DOMContentLoaded", async () => {
   await loadSelectProducts();
   await loadMenuSelect();
   await loadMenus();
-  await userBtn();
-  await userName();
 });

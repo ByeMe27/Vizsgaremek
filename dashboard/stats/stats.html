@@ -4,17 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SuliSnack - Statisztikák</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/x-icon" href="../pics/logo_nobg.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="stats.css" />
   </head>
 
   <body>
-    <div class="d-flex" style="height: 100vh;">
-
+    <div class="d-flex" style="height: 100vh">
       <div class="sidebar d-flex flex-column p-3">
         <div class="text-center mb-4">
           <img src="../pics/logo.png" class="avatar" />
@@ -44,12 +55,14 @@
         </div>
       </div>
 
-      <div class="overflow-auto p-4" style="width: 100vw;">
+      <div class="overflow-auto p-4" style="width: 100vw">
         <h3 class="fw-bold mb-4">Statisztikák</h3>
 
         <div class="stat-grid mb-4">
           <div class="stat-card">
-            <div class="stat-icon orange"><i class="fa-solid fa-receipt"></i></div>
+            <div class="stat-icon orange">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
             <div class="stat-label">Összes rendelés</div>
             <div class="stat-value" id="sc-osszes">—</div>
           </div>
@@ -59,19 +72,22 @@
             <div class="stat-value" id="sc-bevetel">—</div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon blue"><i class="fa-solid fa-basket-shopping"></i></div>
+            <div class="stat-icon blue">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </div>
             <div class="stat-label">Átlagos rendelés</div>
             <div class="stat-value" id="sc-atlag">—</div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon purple"><i class="fa-solid fa-trophy"></i></div>
+            <div class="stat-icon purple">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
             <div class="stat-label">Top termék</div>
             <div class="stat-value stat-value--sm" id="sc-top">—</div>
           </div>
         </div>
 
         <div class="charts-row mb-4">
-
           <div class="chart-card">
             <div class="chart-header">
               <span class="chart-title">Státusz megoszlás</span>
@@ -81,17 +97,14 @@
             <div class="chart-legend" id="statusLegend"></div>
           </div>
 
-          <div class="chart-card mb-4">
+          <div class="chart-card">
             <div class="chart-header">
               <span class="chart-title">Legutóbbi visszajelzések</span>
               <span class="chart-badge badge-orange">Visszajelzések</span>
             </div>
             <div class="feedback-list" id="feedbackCards"></div>
           </div>
-         
         </div>
-
-
       </div>
     </div>
 

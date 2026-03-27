@@ -116,7 +116,8 @@ switch (end($uri)) {
         if ($change) {
             echo json_encode(["Siker" => "Menü sikeresen módosítva!"]);
         } else {
-            return http_response_code(500);
+            http_response_code(400);
+            echo json_encode(["Hiba" => "Sikertelen módósítás!"]);
         }
         break;
 
@@ -134,8 +135,26 @@ switch (end($uri)) {
         if ($delete) {
             echo json_encode(["Siker" => "Menü sikeresen törölve!"]);
         } else {
-            return http_response_code(500);
+             http_response_code(400);
+             echo json_encode(["Hiba" => "Menü törlése sikertelen!"]);
         }
+        break;
+
+    case 'dataquery':
+        if ($method != "GET") {
+            http_response_code(405);
+            return;
+        }
+
+        if (empty($_GET["id"])) {
+            echo json_encode(["Hiba" => "Hiányzó adatok!"], JSON_UNESCAPED_UNICODE);
+            return http_response_code(400);
+        }
+
+        $requestproducts2SQL = "SELECT name, img, price FROM menuk WHERE id = ?";
+        $requestproducts2 = dataQuery($requestproducts2SQL, "s", [$_GET["id"]]);
+
+        echo json_encode($requestproducts2, JSON_UNESCAPED_UNICODE);
         break;
 }
 ?>

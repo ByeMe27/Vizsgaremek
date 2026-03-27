@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Már 19. 12:58
+-- Létrehozás ideje: 2026. Már 27. 13:07
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -73,10 +73,10 @@ INSERT INTO `felhasznalo` (`id`, `name`, `email`, `pwd`, `role`, `class`) VALUES
 (31, 'das', 'sugarmartonlevente@gmail.com', '$2y$10$1KPicLlUpgx4KeRtPe0El.00bPW3WG4vpWEuwh8gzCuq8MKErKhG2', 'user', 'asd'),
 (32, 'TesztElek', 'testtest@gmail.com', '$2y$10$pZhq6t9clUnJpElB9ypAt.W8yBopqayV3.hDhU30JP3UhvC0LV0h.', 'user', 'asd'),
 (33, 'bufes', 'bufes@gmail.com', '$2y$10$WacGl0wGLYya9dMMNty2qONyytWxmW/k29AZOebXoyENw8aXJRpH2', 'bufes', 'Bufe'),
-(34, 'admin', 'admin@gmail.com', '$2y$10$n4yplMoEb.EaZ.7uQOZ5yeHrhLoqRC62qExlrIpTacTF8ue2.mri2', 'admin', '-'),
+(34, 'Administrator Rendszergazda', 'admin@gmail.com', '$2y$10$n4yplMoEb.EaZ.7uQOZ5yeHrhLoqRC62qExlrIpTacTF8ue2.mri2', 'admin', '-'),
 (35, 'user', 'user@gmail.com', '$2y$10$EASwU3cOWkmyKa66sX7VPeEyZNF/kREuHPs/FjwcPVvK907pVE4ae', 'user', '13C'),
 (36, 'das', 'asd11@gmail.com', '$2y$10$2d6O8mJkk2q2KZro16kqeO6j.6RZAUex9F5s3h0KZFrG9qLLem6vG', 'user', 'asd'),
-(37, 'Teszt Elek', 'test66@gmail.com', '$2y$10$Sh0RPMpVHv88JKeUeeXzd.0AVIt0QDl9LGzLQ.lBKddYCceZpyStG', 'user', '13c');
+(37, 'Vitéz János', 'test66@gmail.com', '$2y$10$8f1wPFX70xHYpkYE2SSFaO80brnr0vpj87ueskSALoGqPlfq7qyF2', 'user', '12 C');
 
 -- --------------------------------------------------------
 
@@ -96,9 +96,14 @@ CREATE TABLE `menuk` (
 --
 
 INSERT INTO `menuk` (`id`, `name`, `price`, `img`) VALUES
-(9, 'asd', 10, '1765268816_Image_20251121_101222_784.jpeg'),
-(11, 'brown kedvence', 1100, '1773910406_milli.jpg'),
-(12, 'Patrick italai', 600, '1773914180_cappucino.jpg');
+(14, 'Reggeli napindító extra', 690, '1774605989_kavebalcsiszelet-removebg-preview.png'),
+(16, 'Dupla csokis ajánlat', 700, '1774606565_sporttwix-removebg-preview.png'),
+(17, 'Filmezős tanóra kedvenc', 730, '1774606688_popcornsprite-removebg-preview.png'),
+(18, 'Extra sós kedvelő', 610, '1774606774_cheeseropi-removebg-preview.png'),
+(19, 'A középiskolás tízórai', 990, '1774606848_kakoscsigaenergia-removebg-preview.png'),
+(20, 'Állandó ebéd kínálat 2.', 1490, '1774606951_tonhalasnarancstea-removebg-preview.png'),
+(21, '90-es évek klasszikusa', 920, '1774607046_sonkasyums-removebg-preview.png'),
+(22, 'Energiabomba csak neked', 890, '1774607214_Gemini_Generated_Image_z5bst7z5bst7z5bs-removebg-preview.png');
 
 -- --------------------------------------------------------
 
@@ -117,12 +122,22 @@ CREATE TABLE `menutermek` (
 --
 
 INSERT INTO `menutermek` (`id`, `menu_id`, `termek_id`) VALUES
-(9, 9, 9),
-(10, 9, 18),
-(13, 11, 22),
-(14, 11, 56),
-(15, 12, 21),
-(16, 12, 28);
+(19, 14, 38),
+(20, 14, 9),
+(23, 16, 23),
+(24, 16, 26),
+(25, 17, 29),
+(26, 17, 34),
+(27, 18, 18),
+(28, 18, 35),
+(29, 19, 30),
+(30, 19, 51),
+(31, 20, 32),
+(32, 20, 28),
+(33, 21, 14),
+(34, 21, 41),
+(35, 22, 25),
+(36, 22, 22);
 
 -- --------------------------------------------------------
 
@@ -157,11 +172,17 @@ INSERT INTO `rendeles` (`id`, `felh_id`, `datumido`, `statusz_id`) VALUES
 (19, 9, '2025-11-14 08:49:02', 3),
 (21, 11, '2025-11-14 09:14:51', 2),
 (22, 12, '2025-11-14 09:28:09', 1),
-(24, 37, '2026-03-19 10:27:39', 2),
-(26, 37, '2026-03-19 10:27:43', 2),
-(27, 37, '2026-03-19 10:27:46', 2),
-(28, 37, '2026-03-19 10:59:37', 3),
-(29, 37, '2026-03-19 12:22:14', 3);
+(48, 34, '2026-03-20 13:57:26', 4),
+(49, 34, '2026-03-20 13:57:33', 4),
+(55, 37, '2026-03-27 10:56:00', 4),
+(56, 37, '2026-03-27 10:56:01', 4),
+(57, 37, '2026-03-27 10:56:02', 4),
+(58, 37, '2026-03-27 10:56:36', 4),
+(59, 37, '2026-03-27 10:56:37', 4),
+(60, 37, '2026-03-27 10:56:38', 4),
+(61, 37, '2026-03-27 10:56:40', 4),
+(62, 37, '2026-03-27 10:56:40', 4),
+(63, 37, '2026-03-27 10:59:34', 4);
 
 -- --------------------------------------------------------
 
@@ -181,25 +202,17 @@ CREATE TABLE `rendelestartalma` (
 --
 
 INSERT INTO `rendelestartalma` (`id`, `term_id`, `rend_id`, `mennyiseg`) VALUES
-(37, 14, 24, 1),
-(38, 9, 24, 1),
-(39, 12, 24, 1),
-(40, 16, 24, 1),
-(41, 17, 24, 1),
-(42, 18, 24, 1),
-(45, 9, 26, 1),
-(46, 16, 26, 1),
-(47, 17, 26, 1),
-(48, 20, 27, 1),
-(49, 19, 27, 1),
-(50, 14, 28, 1),
-(51, 12, 28, 1),
-(52, 9, 28, 1),
-(53, 16, 28, 1),
-(54, 17, 28, 2),
-(55, 56, 29, 1),
-(56, 12, 29, 1),
-(57, 9, 29, 1);
+(83, 14, 48, 1),
+(84, 14, 49, 2),
+(90, 12, 55, 1),
+(91, 14, 56, 1),
+(92, 18, 57, 1),
+(93, 14, 58, 1),
+(94, 18, 59, 1),
+(95, 14, 60, 1),
+(96, 14, 61, 1),
+(97, 14, 62, 1),
+(98, 9, 63, 1);
 
 -- --------------------------------------------------------
 
@@ -252,11 +265,11 @@ INSERT INTO `termek` (`id`, `nev`, `kategoria`, `leiras`, `img`, `ar`) VALUES
 (20, 'Espresso', 'kávé', 'Erős, aromás olasz kávé.', 'espresso.png', 430),
 (21, 'Cappuccino', 'kávé', 'Lágy, tejes kávékülönlegesség.', 'cappuccino.png', 450),
 (22, 'Jegeskávé', 'kávé', 'Hűsítő, édes kávé jégkockákkal.', 'icecoffee.png', 500),
-(23, 'Sport szelet', 'édesség', 'Energiát adó kakaós szelet rumos ízzel.', 'sportszelet.png', 340),
-(24, 'Bounty', 'édesség', 'Kókuszos édesség csokoládébevonattal.', 'coconutbar.png', 390),
-(25, 'Snickers', 'édesség', 'Mogyorós karamell szelet csokiban.', 'crunchybar.png', 420),
-(26, 'Twix', 'édesség', 'Karamellás kekszcsík tejcsokoládéban.', 'twins.png', 410),
-(27, 'Mars', 'édesség', 'Csokis-karamellás finomság minden alkalomra.', 'planet.png', 430),
+(23, 'Sportos szelet', 'édesség', 'Energiát adó kakaós szelet rumos ízzel.', 'sportszelet.png', 340),
+(24, 'Coconut', 'édesség', 'Kókuszos édesség csokoládébevonattal.', 'coconutbar.png', 390),
+(25, 'Crunchy', 'édesség', 'Mogyorós karamell szelet csokiban.', 'crunchybar.png', 420),
+(26, 'Twins', 'édesség', 'Karamellás kekszcsík tejcsokoládéban.', 'twins.png', 410),
+(27, 'Planet', 'édesség', 'Csokis-karamellás finomság minden alkalomra.', 'planet.png', 430),
 (28, 'ICETEA Barack 0.5L', 'üdítő', 'Barack ízű jeges tea frissítően.', 'barackostea.png', 440),
 (29, 'Sprite 0.5L', 'üdítő', 'Citrom-lime ízű szénsavas üdítő.', 'sprite.png', 470),
 (30, 'ENERGY energiaital', 'üdítő', 'Energiát adó ital koffeinnel.', 'energy.png', 450),
@@ -269,11 +282,10 @@ INSERT INTO `termek` (`id`, `nev`, `kategoria`, `leiras`, `img`, `ar`) VALUES
 (37, 'Latte Macchiato', 'kávé', 'Tejeskávé lágy habbal a tetején.', 'latte.png', 400),
 (38, 'Americano', 'kávé', 'Hosszú fekete kávé, lágy ízzel.', 'americano.png', 420),
 (39, 'Forró csoki', 'kávé', 'Selymes forró csokoládé hideg napokra.', 'forrocsoki.png', 450),
-(40, 'Kinder Bueno', 'édesség', 'Krémes mogyorós töltelék ropogós ostyában.', 'duo.png', 450),
-(41, 'M&M\'s', 'édesség', 'Színes cukorbevonatú csokigolyók.', 'yums.png', 470),
-(49, 'Ármin', 'dik', 'XD', '1764929916_Image_20251121_100010_248.jpeg', 100),
-(51, 'Csokis csigusz', 'édesség', 'finom csokis csiga', 'kakaoscsiga.png', 600),
-(56, 'Sonkás-sajtos melegszendvics', 'szendvics', 'nagyon jofele', '1773909076_sonkassajtosmeleg.png', 850);
+(40, 'Duo', 'édesség', 'Krémes mogyorós töltelék ropogós ostyában.', 'duo.png', 450),
+(41, 'Yums', 'édesség', 'Színes cukorbevonatú csokigolyók.', 'yums.png', 470),
+(51, 'Csokis csigusz', 'édesség', 'Édes kakaós, omlós csiga.', 'kakaoscsiga.png', 600),
+(56, 'Sonkás-sajtos melegszendvics', 'szendvics', 'Frissen sült, sonkás-sajtos ropogós melegszendvics.', '1773909076_sonkassajtosmeleg.png', 850);
 
 -- --------------------------------------------------------
 
@@ -390,31 +402,31 @@ ALTER TABLE `felhasznalo`
 -- AUTO_INCREMENT a táblához `menuk`
 --
 ALTER TABLE `menuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT a táblához `menutermek`
 --
 ALTER TABLE `menutermek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT a táblához `rendeles`
 --
 ALTER TABLE `rendeles`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT a táblához `rendelestartalma`
 --
 ALTER TABLE `rendelestartalma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT a táblához `termek`
 --
 ALTER TABLE `termek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT a táblához `visszajelzes`

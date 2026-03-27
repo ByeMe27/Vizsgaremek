@@ -12,7 +12,7 @@ switch (end($uri)) {
             return http_response_code(405);
         }
 
-        $querySQL = "SELECT rendeles.id AS id, rendeles.datumido AS datumido, rendeles.statusz_id AS statusz_id FROM `rendeles` INNER JOIN rendelestartalma ON rendeles.id = rendelestartalma.rend_id GROUP BY rendeles.id ORDER BY rendeles.id DESC;";
+        $querySQL = "SELECT rendeles.id AS id, rendeles.datumido AS datumido, rendeles.statusz_id AS statusz_id FROM `rendeles` INNER JOIN rendelestartalma ON rendeles.id = rendelestartalma.rend_id WHERE rendeles.statusz_id <> 4 GROUP BY rendeles.id ORDER BY rendeles.id DESC;";
         $query = dataQuery($querySQL);
 
         foreach ($query as $key => $value) {

@@ -98,7 +98,13 @@ switch (end($uri)) {
         $changeSQL = "UPDATE termek SET nev = ?, kategoria = ?, leiras = ?, ar = ? WHERE id = ?";
         $change = dataChange($changeSQL, "sssii", [$bodydatas["nev"], $bodydatas["kategoria"], $bodydatas["leiras"], $bodydatas["ar"], $bodydatas["id"]]);
 
-            echo json_encode(["Sikeres módosítás!"], JSON_UNESCAPED_UNICODE);
+        if ($change) {
+            echo json_encode(["Siker" => "Sikeres módosítás!"], JSON_UNESCAPED_UNICODE);
+        }
+        else {
+            http_response_code(400);
+            echo json_encode(["Hiba" => "Sikertelen módósítás!"], JSON_UNESCAPED_UNICODE);
+        }
 
         break;
 
@@ -117,7 +123,23 @@ switch (end($uri)) {
 
             echo json_encode(["Sikeres törlés!"], JSON_UNESCAPED_UNICODE);
 
+        break;
 
+    case 'dataquery':
+        if ($method != "GET") {
+            http_response_code(405);
+            return;
+        }
+
+        if (empty($_GET["id"])) {
+            echo json_encode(["Hiba" => "Hiányzó adatok!"], JSON_UNESCAPED_UNICODE);
+            return http_response_code(400);
+        }
+
+        $requestproducts2SQL = "SELECT nev, kategoria, leiras, img, ar FROM termek WHERE id = ?";
+        $requestproducts2 = dataQuery($requestproducts2SQL, "s", [$_GET["id"]]);
+
+        echo json_encode($requestproducts2, JSON_UNESCAPED_UNICODE);
         break;
 }
 

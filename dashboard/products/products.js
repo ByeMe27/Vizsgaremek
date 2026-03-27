@@ -106,6 +106,7 @@ async function createProduct() {
     if (!response.ok) {
       showGlobalAlert(data.Hiba || "Hiba történt!", "danger");
     } else {
+      document.getElementById("form").reset();
       showGlobalAlert("Sikeres termék hozzáadás!", "success");
       await loadSelectProducts();
     }
@@ -132,11 +133,11 @@ async function changeProduct() {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        "nev" : nev,
-        "kategoria" : kategoria,
-        "id" : id, 
-        "leiras" : leiras,
-        "ar" : ar
+        nev: nev,
+        kategoria: kategoria,
+        id: id,
+        leiras: leiras,
+        ar: ar,
       }),
     });
     const data = await response.json();
@@ -144,7 +145,8 @@ async function changeProduct() {
     if (!response.ok) {
       showGlobalAlert(data.Hiba || "Hiba történt!", "danger");
     } else {
-      showGlobalAlert("Sikeres módosítás!", "success");
+      document.getElementById("form2").reset();
+      showGlobalAlert(data.Siker, "success");
       await loadSelectProducts();
     }
   } catch (error) {
@@ -177,6 +179,7 @@ async function deleteProduct() {
     if (!response.ok) {
       showGlobalAlert(data.Hiba || "Hiba történt!", "danger");
     } else {
+      document.getElementById("form3").reset();
       showGlobalAlert("Sikeres törlés!", "success");
       await loadSelectProducts();
     }
@@ -211,17 +214,31 @@ logoutBtn.addEventListener("click", async () => {
     });
 
     if (!res.ok) throw new Error("Kijelentkezés sikertelen");
-    
+
     window.location.href = "../../login/login.html";
   } catch (err) {
     showGlobalAlert(err.message, "danger");
   }
 });
 
+async function loadCurrent() {
+  const changeSelect = document.getElementById("changeSelect").value;
+  let changename = document.getElementById("changename");
+  let changedescription = document.getElementById("changedescription");
+  let changecategory = document.getElementById("changecategory");
+  let changeprice = document.getElementById("changeprice");
+  const res = await fetch("./products.php/dataquery?id=" + changeSelect);
+  if (!res.ok) throw new Error("Hiba a termékek lekérésekor.");
+  const data = await res.json();
+
+  changename.value = data[0].nev;
+  changedescription.value = data[0].leiras;
+  changecategory.value = data[0].kategoria;
+  changeprice.value = data[0].ar;
+}
+
+const changeSelect = document.getElementById("changeSelect");
+changeSelect.addEventListener("change", loadCurrent);
+
 window.addEventListener("DOMContentLoaded", loadSelectProducts);
 window.addEventListener("DOMContentLoaded", loadProducts);
-window.addEventListener("DOMContentLoaded", async () => {
-  await userBtn();
-  await userName();
-});
-
