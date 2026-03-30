@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Már 27. 13:07
+-- Létrehozás ideje: 2026. Már 30. 12:50
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -182,7 +182,10 @@ INSERT INTO `rendeles` (`id`, `felh_id`, `datumido`, `statusz_id`) VALUES
 (60, 37, '2026-03-27 10:56:38', 4),
 (61, 37, '2026-03-27 10:56:40', 4),
 (62, 37, '2026-03-27 10:56:40', 4),
-(63, 37, '2026-03-27 10:59:34', 4);
+(63, 37, '2026-03-27 10:59:34', 4),
+(64, 37, '2026-03-30 11:13:49', 2),
+(65, 37, '2026-03-30 11:15:48', 2),
+(66, 37, '2026-03-30 11:23:23', 2);
 
 -- --------------------------------------------------------
 
@@ -192,7 +195,8 @@ INSERT INTO `rendeles` (`id`, `felh_id`, `datumido`, `statusz_id`) VALUES
 
 CREATE TABLE `rendelestartalma` (
   `id` int(11) NOT NULL,
-  `term_id` int(11) NOT NULL,
+  `term_id` int(11) DEFAULT NULL,
+  `menu_id` int(11) DEFAULT NULL,
   `rend_id` int(11) NOT NULL,
   `mennyiseg` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
@@ -201,18 +205,23 @@ CREATE TABLE `rendelestartalma` (
 -- A tábla adatainak kiíratása `rendelestartalma`
 --
 
-INSERT INTO `rendelestartalma` (`id`, `term_id`, `rend_id`, `mennyiseg`) VALUES
-(83, 14, 48, 1),
-(84, 14, 49, 2),
-(90, 12, 55, 1),
-(91, 14, 56, 1),
-(92, 18, 57, 1),
-(93, 14, 58, 1),
-(94, 18, 59, 1),
-(95, 14, 60, 1),
-(96, 14, 61, 1),
-(97, 14, 62, 1),
-(98, 9, 63, 1);
+INSERT INTO `rendelestartalma` (`id`, `term_id`, `menu_id`, `rend_id`, `mennyiseg`) VALUES
+(83, 14, NULL, 48, 1),
+(84, 14, NULL, 49, 2),
+(90, 12, NULL, 55, 1),
+(91, 14, NULL, 56, 1),
+(92, 18, NULL, 57, 1),
+(93, 14, NULL, 58, 1),
+(94, 18, NULL, 59, 1),
+(95, 14, NULL, 60, 1),
+(96, 14, NULL, 61, 1),
+(97, 14, NULL, 62, 1),
+(98, 9, NULL, 63, 1),
+(100, NULL, 20, 65, 1),
+(101, NULL, 21, 65, 2),
+(102, NULL, 21, 66, 1),
+(103, NULL, 18, 66, 1),
+(104, NULL, 22, 66, 1);
 
 -- --------------------------------------------------------
 
@@ -367,7 +376,8 @@ ALTER TABLE `rendeles`
 ALTER TABLE `rendelestartalma`
   ADD PRIMARY KEY (`id`),
   ADD KEY `term_id` (`term_id`,`rend_id`),
-  ADD KEY `rend_id` (`rend_id`);
+  ADD KEY `rend_id` (`rend_id`),
+  ADD KEY `menu_id` (`menu_id`);
 
 --
 -- A tábla indexei `statusz`
@@ -414,13 +424,13 @@ ALTER TABLE `menutermek`
 -- AUTO_INCREMENT a táblához `rendeles`
 --
 ALTER TABLE `rendeles`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT a táblához `rendelestartalma`
 --
 ALTER TABLE `rendelestartalma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT a táblához `termek`
@@ -457,7 +467,8 @@ ALTER TABLE `rendeles`
 --
 ALTER TABLE `rendelestartalma`
   ADD CONSTRAINT `rendelestartalma_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `termek` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rendelestartalma_ibfk_2` FOREIGN KEY (`rend_id`) REFERENCES `rendeles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rendelestartalma_ibfk_2` FOREIGN KEY (`rend_id`) REFERENCES `rendeles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rendelestartalma_ibfk_3` FOREIGN KEY (`menu_id`) REFERENCES `menuk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `visszajelzes`
