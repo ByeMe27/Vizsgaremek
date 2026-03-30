@@ -58,7 +58,7 @@ body {
   padding: 1.2rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
   border: 1px solid #4a505c;
-  height: calc(100vh - 120px);
+  /*height: calc(100vh - 120px);*/
 }
 
 /* CATEGORY BUTTONS */
@@ -125,8 +125,14 @@ body {
   box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
 }
 
-.cart-content {
+#cart-content {
   color: #f1f1f1;
+  max-height: 338px;
+  padding-right: 10px;
+}
+
+#rightSidebar {
+  height: fit-content;
 }
 
 /* RENDELÉS LEADÁSA GOMB */

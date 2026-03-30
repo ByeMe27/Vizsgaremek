@@ -15,7 +15,7 @@ async function menukBetolt() {
       menus_container.innerHTML += `
         <div class="col-md-4 mb-4 d-flex">
           <div class="card shadow-sm w-100">
-            <img src="../dashboard/menus/uploads/${menu.img}" class="card-img-top" style="height:200px; object-fit:cover;" alt="${menu.name}">
+            <img src="../dashboard/menus/uploads/${menu.img}" class="card-img-top" style="height:200px; object-fit:contain;" alt="${menu.name}">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title menu-name">${menu.name}</h5>
               <p class="card-text">${menu.termekek}</p>
@@ -103,6 +103,45 @@ function kosarBetolt() {
 
   kosardiv.innerHTML = stringbe;
 }
+
+
+
+///////////////////////////////////////////////     RENDELÉS LEADÁS     /////////////////////////////////////////
+async function rendeles() {
+  document.getElementById("cart-price").innerHTML = "";
+  if (kosar.lenght == 0) {
+    kosardiv.innerHTML = "A kosár üres!";
+    return;
+  }
+
+  try {
+    let res = await fetch("./menus.php/rendeles", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(
+        kosar.map((t) => ({
+          id: t.id,
+          db: t.db,
+        })),
+      ),
+    });
+
+    let data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.valasz || "Váratlan hiba történt!");
+    }
+
+    kosardiv.innerHTML = `<div role="alert" class="alert alert-success">
+        Rendelés sikeresen leadva! <br> A Rendeléseim menüpontban nyomon követheted a rendeléseidet!
+      </div>`;
+    kosar = [];
+  } catch (error) {
+    kosardiv.innerHTML = `<div role="alert" class="alert alert-danger">Hiba a rendelés során: ${error.message}</div>`;
+    document.getElementById("cart-price").innerHTML = "";
+  }
+}
+document.getElementById("place-order").addEventListener("click", rendeles)
 
 //////////////////SESSION
 
