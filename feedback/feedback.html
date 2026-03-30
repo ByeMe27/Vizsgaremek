@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SuliSnack – Termékek</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/x-icon" href="./pics/logo_nobg.png" />
+    <link rel="stylesheet" href="./feedback.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <a class="navbar-brand" href="#">
+        <img src="./pics/logo_nobg.png" alt="logo" />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse mx-auto" id="mainNav">
+        <ul class="navbar-nav mx-auto gap-3">
+          <li class="nav-item">
+            <a class="nav-link  px-3" href="../products/products.html">Termékek</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="../menus/menus.html">Menük</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#">Rendeléseim</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3 active" href="#">Visszajelzés</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-none d-lg-flex align-items-center gap-3">
+        <div class="text-end small">
+          <div class="fw-semibold">Nyitvatartás:</div>
+          <div>H–P: 6:55 – 13:35</div>
+        </div>
+
+        <button class="user-btn" id="user-login"></button>
+      </div>
+    </nav>
+
+    <!-- user popup -->
+    <div id="user-popup" class="shadow-sm">
+      <div class="fw-bold mb-2 text-center" id="popup-username"></div>
+      <button class="btn btn-sm btn-outline-primary w-100 mb-2" id="profile">
+        Profil beállítások
+      </button>
+      <button id="logout-btn" class="btn btn-sm btn-outline-danger w-100">
+        Kijelentkezés
+      </button>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6">
+
+
+        </div>
+        <div class="col-lg-6">
+            
+        </div>
+      </div>
+    </div>
+
+    <!-- <footer class="footer sticky-bottom">
+      <div class="container">
+            <hr class="footer-divider">
+
+        <div class="text-center small">
+          © 2026 SuliSnack • Minden jog fenntartva
+        </div>
+      </div>
+    </footer> -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./feedback.js"></script>
+  </body>
+</html>
