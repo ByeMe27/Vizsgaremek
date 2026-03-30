@@ -57,13 +57,6 @@ async function userName() {
   popupUsername.innerHTML += `Helló, ${data.name}!`;
 }
 
-document.querySelectorAll(".category-btn").forEach((btn) => {
-  btn.addEventListener("click", kategoriaValasztas);
-});
-window.addEventListener("load", minden);
-document.getElementById("search-btn").addEventListener("click", szures);
-document.getElementById("place-order").addEventListener("click", rendeles);
-
 window.addEventListener("DOMContentLoaded", async () => {
   await userBtn();
   await userName();
