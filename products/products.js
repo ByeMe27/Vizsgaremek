@@ -12,9 +12,7 @@ function kategoriaValasztas(event) {
 
   if (kivalasztottKategoria == cat) return;
 
-  document
-    .querySelectorAll(".category-btn")
-    .forEach((b) => b.classList.remove("active"));
+  document.querySelectorAll(".category-btn").forEach((b) => b.classList.remove("active"));
 
   btn.classList.add("active");
   kivalasztottKategoria = cat;
@@ -58,7 +56,7 @@ async function szures() {
   let min = document.getElementById("min-price").value;
   let max = document.getElementById("max-price").value;
 
-  console.log("Keresés:", kivalasztottKategoria, min, max);
+  //console.log("Keresés:", kivalasztottKategoria, min, max);
 
   try {
     let req = await fetch(
@@ -202,6 +200,16 @@ async function rendeles() {
   }
 }
 
+
+
+
+document.querySelectorAll(".category-btn").forEach((btn) => {
+  btn.addEventListener("click", kategoriaValasztas);
+});
+window.addEventListener("load", minden);
+document.getElementById("search-btn").addEventListener("click", szures);
+document.getElementById("place-order").addEventListener("click", rendeles);
+
 //////////////////SESSION
 
 const userBtnEl = document.getElementById("user-login");
@@ -260,15 +268,11 @@ async function userName() {
   if (!res.ok) throw new Error(data.Hiba || "Hiba történt!");
   popupUsername.innerHTML += `Helló, ${data.name}!`;
 }
-
-document.querySelectorAll(".category-btn").forEach((btn) => {
-  btn.addEventListener("click", kategoriaValasztas);
-});
-window.addEventListener("load", minden);
-document.getElementById("search-btn").addEventListener("click", szures);
-document.getElementById("place-order").addEventListener("click", rendeles);
-
 window.addEventListener("DOMContentLoaded", async () => {
   await userBtn();
   await userName();
 });
+
+
+
+

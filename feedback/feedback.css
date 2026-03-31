@@ -78,16 +78,63 @@ body {
 
 
 /* TERMÉK KÁRTYÁK */
-.card {
+/* .card {
   background: #3b4049;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
   border: 1px solid #4a505c;
   color: #f1f1f1;
   padding: 15px;
+} */
+
+#form-col{
+  /*background-color: rgb(60, 105, 90);*/
+  height: calc(100vh - 110px);
+}
+#form-div{
+  width: 80%;
+  /*height: 40%;*/
+  padding: 20px;
+  border-radius: 16px;
+  background-color: #353a42;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#feedbacks-col{
+  /*background-color: rgb(79, 97, 60);*/
+  height: calc(100vh - 110px);
+}
+
+#feedback_szoveg{
+  border-radius: 8px;
+  resize:none;
+  height: 200px;
+  font-size: 18px;
+}
+
+#post_feedback {
+  background: #ff6a00;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#post_feedback:hover {
+  background: #ff1f1f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 59, 59, 0.3);
 }
 
 
+
+
+
+/*popup*/
 #user-popup {
   position: absolute;
   top: 100px;
