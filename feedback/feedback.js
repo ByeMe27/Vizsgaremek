@@ -34,10 +34,15 @@ async function UjPoszt(){
         })
       });
       
-
+      let ujposztData = await ujposztres.json()
       if(ujposztres.ok){
         errordiv.hidden = false;
         errordiv.innerHTML = `Visszajelzés közzétéve!`;
+        errordiv.classList = "alert alert-success";
+      }
+      else{
+        errordiv.hidden = false;
+        errordiv.innerHTML = `${ujposztData.valasz}`;
         errordiv.classList = "alert alert-success";
       }
 

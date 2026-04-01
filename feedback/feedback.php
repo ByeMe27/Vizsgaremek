@@ -61,6 +61,8 @@ switch (end($uri)) {
 
     break;
 
+
+    //valami nem mukodik az ellenorzessel 
     case 'userslatestpost':
         if($method != "GET") return http_response_code(405);
 
