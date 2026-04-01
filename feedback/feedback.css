@@ -105,6 +105,9 @@ body {
   /*background-color: rgb(79, 97, 60);*/
   height: calc(100vh - 110px);
 }
+#feedbacks{
+  height: 70vh;
+}
 
 #feedback_szoveg{
   border-radius: 8px;

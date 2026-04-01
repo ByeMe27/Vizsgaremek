@@ -47,7 +47,7 @@ switch (end($uri)) {
         }
 
         $newfeedbackSQL = "INSERT INTO visszajelzes(felh_id, szoveg, kategoria, datumido) VALUES (?,?,?,NOW())";
-        $newfeedback = valtoztatas($newfeedbackSQL,"iss", [$_SESSION["user_id"],$bodyData["szoveg"], $bodyData["kategoria"]] );
+        $newfeedback = valtoztatas($newfeedbackSQL,"iss", [$_SESSION["user_id"], $bodyData["szoveg"], $bodyData["kategoria"]] );
 
         if($newfeedback > 0){
             return http_response_code(201);
@@ -67,6 +67,12 @@ switch (end($uri)) {
         $latest_SQL = "SELECT datumido FROM visszajelzes WHERE felh_id = ? ORDER BY datumido DESC LIMIT 1";
         $latest = lekeres($latest_SQL, "i", [$_SESSION["user_id"]]);
 
+
+        if(empty($latest)){
+            echo json_encode(["varjmeg" => 0]);
+            http_response_code(200);
+            return;
+        }
 
         $latestCommentTime = strtotime($latest["datumido"]);
         $now = time();

@@ -5,13 +5,14 @@ errordiv.innerHTML = "";
 
 let kivalasztottKategoria = "";
 
-async function LegutobbiVisszajelzes(){
+async function UjPoszt(){
   try {
     console.log("ITT VAGYUNK")
 
     //legutobbi poszt ota eltelt idot szamolo apinak
     let datumres  = await fetch("./feedback.php/userslatestpost")
     let datumData = await datumres.json();
+    console.log(datumData.varjmeg)
 
     if(datumData.varjmeg > 0){
       
@@ -25,13 +26,14 @@ async function LegutobbiVisszajelzes(){
       console.log(szoveg)
 
       let ujposztres = await fetch("./feedback.php/newfeedback",{
+        method : "POST",
         headers : {"ContentType" : "application/json"},
         body : JSON.stringify({
           "szoveg" : szoveg,
           "kategoria" : kategoria
         })
       });
-      let ujposztData = await ujposztres.json()
+      
 
       if(ujposztres.ok){
         errordiv.hidden = false;
@@ -41,10 +43,10 @@ async function LegutobbiVisszajelzes(){
 
     }
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
   }
 }
-document.getElementById("post_feedback").addEventListener("click", LegutobbiVisszajelzes);
+document.getElementById("post_feedback").addEventListener("click", UjPoszt);
 
 
 
