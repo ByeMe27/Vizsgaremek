@@ -109,6 +109,14 @@ body {
   height: 70vh;
 }
 
+.feedback-card{
+  border-radius: 16px;
+  background-color: rgb(53, 58, 66);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: white !important;
+}
+
 #feedback_szoveg{
   border-radius: 8px;
   resize:none;

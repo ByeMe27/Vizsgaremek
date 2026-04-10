@@ -1,8 +1,6 @@
 let errordiv = document.getElementById("errordiv");
 errordiv.innerHTML = "";
 
-
-
 let kivalasztottKategoria = "";
 
 async function UjPoszt(){
@@ -74,8 +72,6 @@ document.querySelectorAll(".category-btn").forEach((btn) => {
 });
 
 
-
-
 async function VisszajelzesekBetolt(kat){
   document.getElementById("feedbacks").innerHTML ="";
   try {
@@ -87,13 +83,13 @@ async function VisszajelzesekBetolt(kat){
       for (const fb of Data) {
         document.getElementById("feedbacks").innerHTML+=
       `
-        <div class="card mb-3 shadow-sm">
+        <div class="feedback-card card mb-3 shadow-sm">
           <div class="card-body">
             <div class="d-flex justify-content-between">
-              <h5 id="poszt_kategoria" class="card-title mb-0">${fb.kategoria}</h5>
-              <small id="poszt_datum" class="text-muted">${fb.datumido}</small>
+              <p id="poszt_kategoria" class="card-text mb-0">${fb.kategoria}</p>
+              <small id="poszt_datum" class="text-white">${fb.datumido}</small>
             </div>
-            <p id="poszt_szoveg" class="card-text mt-3">${fb.szoveg}</p>
+            <h5 id="poszt_szoveg" class="card-title mt-3">${fb.szoveg}</h5>
           </div>
         </div>
       `
@@ -104,45 +100,7 @@ async function VisszajelzesekBetolt(kat){
     console.log(error)
   }
 }
-//window.addEventListener("load", VisszajelzesekBetolt("osszes"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+window.addEventListener("load", VisszajelzesekBetolt("osszes"));
 
 
 
