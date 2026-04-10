@@ -95,7 +95,7 @@ body {
 }
 
 #products-container {
-  height: calc(100vh-120px);  /*80vh-rol atirva*/
+  height: 88vh;  /*80vh-rol atirva*/
 }
 
 /* TERMÉK KÁRTYÁK */
@@ -127,6 +127,9 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
+}
+.to-cart:active{
+  background: #ff1f1f;
 }
 
 #product-name {
