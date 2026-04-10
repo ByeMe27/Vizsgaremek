@@ -7,13 +7,10 @@ let kivalasztottKategoria = "";
 
 async function UjPoszt(){
   try {
-    console.log("ITT VAGYUNK")
-
     //legutobbi poszt ota eltelt idot szamolo apinak
     let datumres  = await fetch("./feedback.php/userslatestpost")
     let datumData = await datumres.json();
-    console.log(datumData.varjmeg)
-
+    
     if(datumData.varjmeg > 0){
       
       errordiv.hidden = false;
@@ -23,7 +20,10 @@ async function UjPoszt(){
     else{
       let szoveg = document.getElementById("feedback_szoveg").value; 
       let kategoria = document.getElementById("kat_select").value; 
-      console.log(szoveg)
+
+      document.getElementById("feedback_szoveg").value = "";
+      document.getElementById("kat_select").value ="";
+
 
       let ujposztres = await fetch("./feedback.php/newfeedback",{
         method : "POST",
@@ -35,6 +35,7 @@ async function UjPoszt(){
       });
       
       let ujposztData = await ujposztres.json()
+      console.log(ujposztres)
       if(ujposztres.ok){
         errordiv.hidden = false;
         errordiv.innerHTML = `Visszajelzés közzétéve!`;

@@ -8,97 +8,96 @@ $bodyData = json_decode(file_get_contents("php://input"), true);
 
 switch (end($uri)) {
     case 'feedbacks':
-        if($method != "GET"){
-            return http_response_code(405);
-        }
-        
-        if(empty($_GET["kategoria"])){
-            echo json_encode(["valasz" => "Nincs megadva akeresett kategoria"]);
-            http_response_code(400);
+        if ($method != "GET") {
+            http_response_code(405);
             return;
         }
-        else if ($_GET["kategoria"] == "osszes"){
-            
-            $feedback_listSQL = "SELECT visszajelzes.szoveg, visszajelzes.kategoria, visszajelzes.datumido, felhasznalo.name AS nev FROM visszajelzes INNER JOIN felhasznalo ON felhasznalo.id = visszajelzes.felh_id ORDER BY visszajelzes.datumido DESC";
-            $feedback_list = lekeres($feedback_listSQL);
 
+        if (empty($_GET["kategoria"])) {
+            http_response_code(400);
+            echo json_encode(["valasz" => "Nincs megadva a keresett kategoria"]);
+            return;
+        } else if ($_GET["kategoria"] == "osszes") {
+            $feedback_listSQL = "SELECT visszajelzes.szoveg, visszajelzes.kategoria, visszajelzes.datumido, felhasznalo.name AS nev 
+                                 FROM visszajelzes 
+                                 INNER JOIN felhasznalo ON felhasznalo.id = visszajelzes.felh_id 
+                                 ORDER BY visszajelzes.datumido DESC";
+            $feedback_list = lekeres($feedback_listSQL);
             echo json_encode($feedback_list);
             return;
-        }
-        else{
-            $filtered_feedbacks_SQL = "SELECT visszajelzes.szoveg, visszajelzes.kategoria, visszajelzes.datumido, felhasznalo.name AS nev FROM visszajelzes INNER JOIN felhasznalo ON felhasznalo.id = visszajelzes.felh_id WHERE visszajelzes.kategoria = ? ORDER BY visszajelzes.datumido DESC";
+        } else {
+            $filtered_feedbacks_SQL = "SELECT visszajelzes.szoveg, visszajelzes.kategoria, visszajelzes.datumido, felhasznalo.name AS nev 
+                                       FROM visszajelzes 
+                                       INNER JOIN felhasznalo ON felhasznalo.id = visszajelzes.felh_id 
+                                       WHERE visszajelzes.kategoria = ? 
+                                       ORDER BY visszajelzes.datumido DESC";
             $filtered_feedbacks = lekeres($filtered_feedbacks_SQL, "s", [$_GET["kategoria"]]);
-
             echo json_encode($filtered_feedbacks);
             return;
         }
-
-        
-        
-    break;
+        break;
 
     case 'newfeedback':
-        if($method != "POST") return http_response_code(405);
+        if ($method != "POST") {
+            http_response_code(405);
+            return;
+        }
 
-        if(empty($bodyData["szoveg"]) ||empty($bodyData["kategoria"])){
+        if (empty($bodyData["szoveg"]) || empty($bodyData["kategoria"])) {
             http_response_code(400);
             echo json_encode(["valasz" => "Hiányos adatok"]);
             return;
         }
 
         $newfeedbackSQL = "INSERT INTO visszajelzes(felh_id, szoveg, kategoria, datumido) VALUES (?,?,?,NOW())";
-        $newfeedback = valtoztatas($newfeedbackSQL,"iss", [$_SESSION["user_id"], $bodyData["szoveg"], $bodyData["kategoria"]] );
+        $newfeedback = valtoztatas($newfeedbackSQL, "iss", [$_SESSION["user_id"], $bodyData["szoveg"], $bodyData["kategoria"]]);
 
-        if($newfeedback > 0){
-            return http_response_code(201);
-        }
-        else{
+        if ($newfeedback === true) {
+            http_response_code(201);
+            return;
+        } else {
             http_response_code(400);
             echo json_encode(["valasz" => "Sikertelen feltöltés"]);
             return;
         }
+        break;
 
-
-    break;
-
-
-    //valami nem mukodik az ellenorzessel 
     case 'userslatestpost':
-        if($method != "GET") return http_response_code(405);
+        if ($method != "GET") {
+            http_response_code(405);
+            return;
+        }
 
         $latest_SQL = "SELECT datumido FROM visszajelzes WHERE felh_id = ? ORDER BY datumido DESC LIMIT 1";
         $latest = lekeres($latest_SQL, "i", [$_SESSION["user_id"]]);
 
-
-        if(empty($latest)){
-            echo json_encode(["varjmeg" => 0]);
+        // lekeres() fetch_all-t használ, tehát tömböt kapunk vissza
+        if (empty($latest)) {
             http_response_code(200);
+            echo json_encode(["varjmeg" => 0]);
             return;
         }
 
-        $latestCommentTime = strtotime($latest["datumido"]);
+        $latestCommentTime = strtotime($latest[0]["datumido"]);  // [0] kellett!
         $now = time();
 
         $diffSeconds = $now - $latestCommentTime;
         $diffMinutes = $diffSeconds / 60;
         $remaining = ceil(30 - $diffMinutes);
 
-        echo json_encode(["varjmeg" => $remaining]);
+        // Ha már eltelt a 30 perc, ne adjon vissza negatív számot
+        if ($remaining < 0) {
+            $remaining = 0;
+        }
+
         http_response_code(200);
+        echo json_encode(["varjmeg" => $remaining]);
         return;
-    break;
-
-
-    
-
-    
-    default:
-        # code...
         break;
 
-
+    default:
+        break;
 }
-session_destroy()
 
-
+session_destroy();
 ?>
