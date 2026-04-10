@@ -106,7 +106,7 @@ body {
   height: calc(100vh - 110px);
 }
 #feedbacks{
-  height: 70vh;
+  height: 75vh;
 }
 
 .feedback-card{

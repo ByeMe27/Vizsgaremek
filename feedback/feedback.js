@@ -3,55 +3,46 @@ errordiv.innerHTML = "";
 
 let kivalasztottKategoria = "";
 
-async function UjPoszt(){
+async function UjPoszt() {
   try {
-    //legutobbi poszt ota eltelt idot szamolo apinak
-    let datumres  = await fetch("./feedback.php/userslatestpost")
+    let datumres = await fetch("./feedback.php/userslatestpost");
     let datumData = await datumres.json();
-    
-    if(datumData.varjmeg > 0){
-      
+
+    if (datumData.varjmeg > 0) {
       errordiv.hidden = false;
-      errordiv.innerHTML = `Túl gyorsan posztolsz, várj még ${datumData.varjmeg} percet!`
+      errordiv.innerHTML = `Túl gyorsan posztolsz, várj még ${datumData.varjmeg} percet!`;
       errordiv.classList = "alert alert-danger";
-    }
-    else{
-      let szoveg = document.getElementById("feedback_szoveg").value; 
-      let kategoria = document.getElementById("kat_select").value; 
+    } else {
+      let szoveg = document.getElementById("feedback_szoveg").value;
+      let kategoria = document.getElementById("kat_select").value;
 
       document.getElementById("feedback_szoveg").value = "";
-      document.getElementById("kat_select").value ="";
+      document.getElementById("kat_select").value = "Mivel kapcsolatban írsz?";
 
-
-      let ujposztres = await fetch("./feedback.php/newfeedback",{
-        method : "POST",
-        headers : {"ContentType" : "application/json"},
-        body : JSON.stringify({
-          "szoveg" : szoveg,
-          "kategoria" : kategoria
-        })
+      let ujposztres = await fetch("./feedback.php/newfeedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }, 
+        body: JSON.stringify({ "szoveg": szoveg, "kategoria": kategoria })
       });
-      
-      let ujposztData = await ujposztres.json()
-      console.log(ujposztres)
-      if(ujposztres.ok){
-        errordiv.hidden = false;
-        errordiv.innerHTML = `Visszajelzés közzétéve!`;
-        errordiv.classList = "alert alert-success";
-      }
-      else{
-        errordiv.hidden = false;
-        errordiv.innerHTML = `${ujposztData.valasz}`;
-        errordiv.classList = "alert alert-success";
-      }
 
+      if (!ujposztres.ok) {
+        let ujposztData = await ujposztres.json();
+        errordiv.hidden = false;
+        errordiv.innerHTML = ujposztData.valasz;
+        errordiv.classList = "alert alert-danger"; 
+      } else {
+        errordiv.hidden = false;
+        errordiv.innerHTML = "Visszajelzés közzétéve!";
+        errordiv.classList = "alert alert-success";
+        VisszajelzesekBetolt("osszes");
+      }
     }
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 }
-document.getElementById("post_feedback").addEventListener("click", UjPoszt);
 
+document.getElementById("post_feedback").addEventListener("click", UjPoszt);
 
 
 function kategoriaValasztas(event) {
