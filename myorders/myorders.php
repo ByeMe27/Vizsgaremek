@@ -15,24 +15,24 @@ switch (end($uri)) {
         }
 
         $ordersSQL = "SELECT 
-                        rendeles.id AS rendeles_id,
-                        rendeles.datumido,
-                        statusz.nev AS statusz,
-                        rendelestartalma.mennyiseg,
-                        COALESCE(termek.nev, menuk.name) AS nev,
-                        COALESCE(termek.ar, menuk.price) AS ar
-                    FROM rendeles
-                    INNER JOIN statusz ON statusz.id = rendeles.statusz_id
-                    INNER JOIN rendelestartalma ON rendelestartalma.rend_id = rendeles.id
-                    LEFT JOIN termek ON termek.id = rendelestartalma.term_id
-                    LEFT JOIN menuk ON menuk.id = rendelestartalma.menu_id
-                    WHERE rendeles.felh_id = ?
-                    ORDER BY rendeles.datumido DESC"
+                rendeles.id AS rendeles_id,
+                rendeles.datumido,
+                statusz.nev AS statusz,
+                rendelestartalma.mennyiseg,
+                COALESCE(termek.nev, menuk.name) AS nev,
+                COALESCE(termek.ar, menuk.price) AS ar
+            FROM rendeles
+            INNER JOIN statusz ON statusz.id = rendeles.statusz_id
+            INNER JOIN rendelestartalma ON rendelestartalma.rend_id = rendeles.id
+            LEFT JOIN termek ON termek.id = rendelestartalma.term_id
+            LEFT JOIN menuk ON menuk.id = rendelestartalma.menu_id
+            WHERE rendeles.felh_id = ?
+            ORDER BY rendeles.datumido DESC"
         ;
 
-        $rows = lekeres($ordersSQL, "i", [$_SESSION["user_id"]]);
+        $orders = lekeres($ordersSQL, "i", [$_SESSION["user_id"]]);
 
-        if (empty($rows)) {
+        if (empty($orders)) {
             http_response_code(200);
             echo json_encode([]);
             return;
@@ -40,7 +40,7 @@ switch (end($uri)) {
 
         $rendeles_lista = [];
 
-        foreach ($rows as $sor) {
+        foreach ($orders as $sor) {
             $rid = $sor["rendeles_id"];
 
             if (!isset($rendeles_lista[$rid])) {
