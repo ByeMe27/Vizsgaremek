@@ -93,6 +93,10 @@ body {
   color: #f1f1f1;
 }
 
+#menus-container{
+  height: 88vh;
+}
+
 /* TERMÉK KÁRTYÁK */
 .card {
   background: #3b4049;
