@@ -3,40 +3,63 @@ orders_cont.innerHTML = ""
 let errordiv = document.getElementById("errordiv")
 errordiv.innerHTML = "";
 
-async function RendelesekBetolt(){
+async function rendelesekBetolt() {
   try {
     let res = await fetch("./myorders.php/myorders");
+    let data = await res.json();
 
-    if(res.ok){
-      let data = await res.json()
+    if (!res.ok) {
+      throw data.valasz;
+    }
 
-      for (const order of data) {
-        orders_cont.innerHTML = `
-          <div class="col-md-4 mb-4 d-flex">
-            <div class="card shadow-sm w-100">
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title menu-name">${menu.name}</h5>
-                <p class="card-text">${menu.termekek}</p>
-                <div class="mt-auto d-flex justify-content-between align-items-center">
-                  <span class="fw-bold">${menu.price} Ft</span>
-                  <button class="btn btn-sm to-cart" data-id="${menu.id}" data-nev="${menu.name}" data-ar="${menu.price}">Kosárba</button>
-                </div>
+    if (data.length === 0) {
+      orders_cont.innerHTML = `<p class="text-muted">Még nincs leadott rendelésed.</p>`;
+      return;
+    }
+
+    const borderSzin = {
+      "Leadva":     "border: 2px solid orange;",
+      "Átvéve":     "border: 2px solid red;",
+      "Átvehető":   "border: 2px solid green;"
+    };
+
+    for (const rendeles of data) {
+      //ha ismeretlen lenne a statusz
+      const border = borderSzin[rendeles.statusz] ?? "border: 2px solid gray;";
+
+      
+      let termekSorok = "";
+      for (const t of rendeles.termekek) {
+        termekSorok += `<li>${t.nev} – ${t.mennyiseg} db – ${t.ar} Ft/db</li>`;
+      }
+
+      orders_cont.innerHTML += `
+        <div class="col-md-4 mb-4 d-flex">
+          <div class="card shadow-sm w-100" style="${border}">
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">#${rendeles.rendeles_id} rendelés</h3>
+              <p class="card-text">${rendeles.datumido}</p>
+              <p class="card-text">Státusz: <strong>${rendeles.statusz}</strong></p>
+              <ul class="card-text">
+                ${termekSorok}
+              </ul>
+              <div class="mt-auto d-flex justify-content-end">
+                <button class="btn btn-sm to-cart ujra-rendel" data-rendeles-id="${rendeles.rendeles_id}">
+                  Újra megrendelem
+                </button>
               </div>
             </div>
           </div>
-        `
-      }
-    }
-    else{
-      errordiv.hidden = false
-      errordiv.innerHTML = "Korábbi rendeléseid betöltése sikertelen"
-      errordiv.className = "alert alert-danger"
+        </div>
+      `;
     }
   } catch (error) {
-    
+    errordiv.hidden = false;
+    errordiv.innerHTML = error;
+    errordiv.className = "alert alert-danger";
   }
 }
-window.addEventListener("load", RendelesekBetolt)
+window.addEventListener("load", rendelesekBetolt);
 
 
 

@@ -30,7 +30,7 @@ switch (end($uri)) {
             ORDER BY rendeles.datumido DESC"
         ;
 
-        $orders = lekeres($ordersSQL, "i", [$_SESSION["user_id"]]);
+        $orders = lekeres($ordersSQL, "i", [$_SESSION["user_id"]]); 
 
         if (empty($orders)) {
             http_response_code(200);
