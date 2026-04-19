@@ -135,7 +135,7 @@ logoutBtn.addEventListener("click", async () => {
 
 profileBtn.addEventListener("click", async () => {
   try {
-    window.location.href = "profile/profile.html";
+    window.location.href = "./profile/profile.html";
   } catch (err) {
     showGlobalAlert(err.message, "danger");
   }
