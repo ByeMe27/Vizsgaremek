@@ -75,7 +75,7 @@
           <div id="form-div">
             <h3 class="mb-5 text-center">Nyilvános visszajelzés írása</h3>
             <form>
-              <label for="kat_select" class="fs-5">MIvel kapcsolatban írsz? Válassz kategóriát!</label>
+              <label for="kat_select" class="fs-5">Mivel kapcsolatban írsz? Válassz kategóriát!</label>
               <select id="kat_select" class="form-select form-select-lg">
                 <option value=""></option>
                 <option value="Termék">Termék</option>
@@ -84,8 +84,8 @@
                 <option value="Egyéb">Egyéb</option>
               </select><br>
 
-              <label for="feedback_szoveg" class="fs-5">Fejtsd ki a véleményed</label>
-              <textarea id="feedback_szoveg" class="w-100"></textarea>
+              <label for="feedback_szoveg" class="fs-5">Fejtsd ki a véleményed (max 300 karakter)</label>
+              <textarea id="feedback_szoveg" class="w-100" maxlength="300"></textarea>
 
               <input type="button" class="btn btn-dark w-100 my-4" id="post_feedback" value="Visszajelzés közzététele"/>
             </form>
