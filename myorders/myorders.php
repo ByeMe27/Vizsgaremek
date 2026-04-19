@@ -33,8 +33,8 @@ switch (end($uri)) {
         $orders = lekeres($ordersSQL, "i", [$_SESSION["user_id"]]); 
 
         if (empty($orders)) {
-            http_response_code(200);
-            echo json_encode([]);
+            http_response_code(400);
+            echo json_encode(["valasz" => "Még nem adtál le rendeléseket."]);
             return;
         }
 

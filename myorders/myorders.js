@@ -12,11 +12,6 @@ async function rendelesekBetolt() {
       throw data.valasz;
     }
 
-    if (data.length === 0) {
-      orders_cont.innerHTML = `<p class="text-muted">Még nincs leadott rendelésed.</p>`;
-      return;
-    }
-
     const borderSzin = {
       "Leadva":     "border: 2px solid orange;",
       "Átvéve":     "border: 2px solid red;",
@@ -34,10 +29,10 @@ async function rendelesekBetolt() {
       }
 
       orders_cont.innerHTML += `
-        <div class="col-md-4 mb-4 d-flex">
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
           <div class="card shadow-sm w-100" style="${border}">
             <div class="card-body d-flex flex-column">
-              <h3 class="card-title">#${rendeles.rendeles_id} rendelés</h3>
+              <h3 class="card-title">Rendelés száma: #${rendeles.rendeles_id}</h3>
               <p class="card-text">${rendeles.datumido}</p>
               <p class="card-text">Státusz: <strong>${rendeles.statusz}</strong></p>
               <ul class="card-text">
