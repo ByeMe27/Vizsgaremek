@@ -87,8 +87,9 @@ function kosarBetolt() {
           <strong>${elem.nev}</strong><br>
           <small>${elem.db} x ${elem.ar}</small>
         </div>
-        <div class="fw-bold">
-          ${reszosszeg} Ft
+        <div class="d-flex align-items-center gap-3">
+          <span class="fw-bold">${reszosszeg} Ft</span>
+          <button type="button" class="remove-from-cart btn btn-danger" data-id="${elem.id}">x</button>
         </div>
       </div>  
     `;
@@ -104,6 +105,24 @@ function kosarBetolt() {
   kosardiv.innerHTML = stringbe;
 }
 
+
+document.getElementById("cart-content").addEventListener("click", function (event) {
+  
+
+  let btn = event.target;
+
+  for (let i = 0; i < kosar.length; i++) {
+    if(kosar[i].id == btn.dataset.id) {
+      let index = i;
+      kosar.splice(index, 1);
+    }
+  }
+
+  kosarBetolt()
+
+
+  
+});
 
 
 ///////////////////////////////////////////////     RENDELÉS LEADÁS     /////////////////////////////////////////
