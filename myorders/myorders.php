@@ -65,6 +65,17 @@ switch (end($uri)) {
         echo json_encode($rendeles_lista);
         return;
     break;
+
+    case 'orderagain':
+        if ($method != "POST") {
+            http_response_code(405);
+            return;
+        }
+
+        
+
+
+    break;
     
 
 

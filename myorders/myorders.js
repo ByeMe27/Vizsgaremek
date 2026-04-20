@@ -39,7 +39,7 @@ async function rendelesekBetolt() {
                 ${termekSorok}
               </ul>
               <div class="mt-auto d-flex justify-content-end">
-                <button class="btn btn-sm to-cart ujra-rendel" data-rendeles-id="${rendeles.rendeles_id}">
+                <button class="btn btn-sm order-again ujra-rendel" data-rendeles-id="${rendeles.rendeles_id}">
                   Újra megrendelem
                 </button>
               </div>

@@ -87,7 +87,7 @@ body {
 }
 
 /* KOSÁRBA GOMB */
-.to-cart {
+.order-again {
   background: linear-gradient(135deg, #ff6a00, #ff3b3b);
   color: white;
   border: none;
@@ -97,7 +97,7 @@ body {
   cursor: pointer;
   transition: 0.2s;
 }
-.to-cart:active{
+.order-again:active{
   background: #ff1f1f;
 }
 
