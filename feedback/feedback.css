@@ -74,7 +74,7 @@ body {
   border-color: transparent;
 }
 
-/* KÖZÉPSŐ RÉSZ – termékek listája */
+
 
 
 /* TERMÉK KÁRTYÁK */
@@ -106,7 +106,7 @@ body {
   height: calc(100vh - 110px);
 }
 #feedbacks{
-  height: 75vh;
+  height: 72vh;
 }
 
 .feedback-card{
