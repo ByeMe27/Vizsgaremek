@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SnackSuli – Bejelentkezés</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="icon" type="image/x-icon" href="./pics/logo_nobg.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <form method="post">
+      <div class="imgcontainer">
+        <img src="./pics/logo.png" alt="SnackSuli logó" class="avatar" />
+      </div>
+
+      <div class="container">
+        <label for="email"><b>E-mail
+        </b></label>
+        <input
+          type="text"
+          placeholder="Írja be az e-mail címét"
+          name="email"
+          id="email"
+          required
+        />
+
+        <label for="psw"><b>Jelszó</b></label>
+        <input
+          type="password"
+          placeholder="Írja be a jelszót"
+          name="psw"
+          id="password"
+          required
+        />
+
+        <button type="button" id="loginbtn">Bejelentkezés</button>
+
+        <label>
+          <input type="checkbox" checked="checked" name="remember" id="remember"/> Emlékezz
+          rám
+        </label>
+
+          <span class="register-link">
+            <a href="./register/register.html">Regisztrálj itt⭢</a>
+          </span>
+        </div>
+      </div>
+      <script src="login.js"></script>
+    </form>
+  </body>
+</html>

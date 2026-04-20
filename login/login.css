@@ -1,0 +1,136 @@
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: #2b2f36;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #f1f1f1;
+}
+
+form {
+  background: #3b4049;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 45px;
+  text-align: center;
+  border: 1px solid #4a505c;
+}
+
+.imgcontainer {
+  margin-bottom: 25px;
+}
+
+img.avatar {
+  width: 90px;
+  border-radius: 20%;
+  background-color: #464c58;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
+}
+
+input[type="text"],
+input[type="password"] {
+  border-radius: 12px;
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0 18px 0;
+  border: 1px solid #4a505c;
+  background-color: #2b2f36;
+  color: #f1f1f1;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #ff8c32;
+  box-shadow: 0 0 8px rgba(255, 140, 50, 0.3);
+  outline: none;
+}
+
+button {
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff6a00, #ff3b3b);
+  color: #fff;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
+}
+
+label {
+  color: #f1f1f1;
+  font-size: 0.95rem;
+  display: block;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.container {
+  padding: 0;
+}
+
+span.psw {
+  display: block;
+  text-align: right;
+  font-size: 0.9rem;
+  color: #f1f1f1;
+  margin-top: 6px;
+}
+
+span.psw a {
+  color: #ff8c32;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+span.psw a:hover {
+  text-decoration: underline;
+}
+
+label input[type="checkbox"] {
+  accent-color: #ffb27a;
+}
+
+.register-link {
+  margin-top: 30px;
+}
+
+.register-link a {
+  color: #ff8c32;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 400px) {
+  form {
+    padding: 25px;
+  }
+
+  span.psw {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .register-link a {
+    font-size: 0.95rem;
+  }
+}

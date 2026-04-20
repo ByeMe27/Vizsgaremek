@@ -1,0 +1,270 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #2b2f36;
+  color: #f1f1f1;
+  margin: 0;
+  overflow-x: clip;
+}
+
+.sidebar {
+  width: 280px;
+  min-height: 100vh;
+  min-width: 220px;
+  background: #2b2f36;
+  border-right: 1px solid #4a505c;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 20%;
+  background-color: #464c58;
+  padding: 10px;
+  object-fit: contain;
+  box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
+  margin: 0 auto 20px auto;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f1f1f1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background: #ff8c32;
+  color: #ffffff;
+}
+
+.nav-btn.active {
+  background: #ff8c32;
+  color: #ffffff;
+}
+
+.nav-btn i {
+  width: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+h3 {
+  color: #ff8c32;
+}
+
+.order-card {
+  background: #2e333b;
+  border: 1px solid #3e4450;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.order-card:hover {
+  border-color: #505869;
+}
+
+.order-id-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  background: #23272e;
+  border-radius: 12px;
+  padding: 10px 8px;
+  flex-shrink: 0;
+}
+
+.order-id-label {
+  font-size: 10px;
+  color: #6b7280;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.order-id-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ff8c32;
+  line-height: 1.2;
+}
+
+.order-divider {
+  width: 1px;
+  height: 52px;
+  background: #3e4450;
+  flex-shrink: 0;
+}
+
+.order-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.order-date {
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.order-date svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.order-products {
+  font-size: 13px;
+  color: #c9cdd6;
+  line-height: 1.5;
+}
+
+.order-products strong {
+  color: #f1f1f1;
+  font-weight: 600;
+}
+
+.order-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ff8c32;
+  background: rgba(255, 140, 50, 0.1);
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin-top: 2px;
+  align-self: flex-start;
+}
+
+.order-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn-action {
+  padding: 7px 14px;
+  border-radius: 9px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  transition: opacity 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.btn-action:hover {
+  opacity: 0.82;
+  transform: translateY(-1px);
+}
+
+.btn-action:active {
+  transform: scale(0.97);
+}
+
+.btn-delete {
+  background: rgba(255, 59, 59, 0.15);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 59, 59, 0.3);
+}
+
+.btn-delete:hover {
+  background: rgba(255, 59, 59, 0.28);
+}
+
+.btn-process {
+  background:  rgba(197, 25, 25, 0.205);
+  color: rgba(255, 0, 0, 0.9);
+  border: 1px solid  rgba(255, 0, 0, 0.9);
+}
+
+.btn-process:hover {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.btn-ready {
+  background: rgba(255, 140, 50, 0.15);
+  color: #ff8c32;
+  border: 1px solid rgba(255, 140, 50, 0.35);
+}
+
+.btn-ready:hover {
+  background: rgba(255, 140, 50, 0.28);
+}
+
+.btn-done {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.btn-done:hover {
+  background: rgba(46, 204, 113, 0.28);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    flex-direction: row;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #4a505c;
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .nav-btn {
+    margin-bottom: 0;
+    margin-right: 10px;
+    white-space: nowrap;
+  }
+
+  .nav-btn span { display: none; }
+
+  .content-box {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .order-card {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .order-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .order-divider { display: none; }
+}

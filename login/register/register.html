@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SnackSuli – Regisztráció</title>
+    <link rel="stylesheet" href="register.css" />
+    <link rel="icon" type="image/x-icon" href="../pics/logo_nobg.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <form method="post">
+      <div class="imgcontainer">
+        <img src="../pics/logo.png" alt="SnackSuli logó" class="avatar" />
+      </div>
+
+      <div class="container">
+        <h2>Regisztráció</h2>
+
+        <label for="name"><b>Teljes név</b></label>
+        <input
+          type="text"
+          placeholder="Írja be a nevét"
+          name="name"
+          id="name"
+          required
+        />
+
+        <label for="email"><b>E-mail cím</b></label>
+        <input
+          type="email"
+          placeholder="Írja be az e-mail címét"
+          name="email"
+          id="email"
+          required
+        />
+
+        <label for="class"><b>Osztály</b></label>
+        <input type="text" placeholder="Pl. 13C" name="class" required />
+
+        <label for="psw"><b>Jelszó</b></label>
+        <input
+          type="password"
+          placeholder="Írjon be egy jelszót"
+          name="psw"
+          id="password"
+          required
+        />
+
+        <button type="button" id="registerbtn">Regisztráció</button>
+
+        <div class="back">
+          <a href="../login.html">⭠ Már van fiókja? Jelentkezzen be</a>
+        </div>
+      </div>
+      <script src="register.js"></script>
+    </form>
+  </body>
+</html>

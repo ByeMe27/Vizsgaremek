@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SuliSnack – Termékek</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./products.css">
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#">
+    <img src="./pics/logo_nobg.png" alt="logo">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse mx-auto" id="mainNav">
+      <ul class="navbar-nav mx-auto gap-3">
+          <li class="nav-item">
+              <a class="nav-link active px-3" href="#">Termékek</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link px-3" href="#">Menük</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link px-3" href="#">Rendeléseim</a>
+          </li>
+      </ul>
+  </div>
+
+  <div class="d-none d-lg-flex align-items-center gap-3">
+      <div class="text-end small">
+          <div class="fw-semibold">Nyitvatartás:</div>
+          <div>H–P: 6:55 – 13:35</div>
+      </div>
+
+      <button class="user-btn">TB</button>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="row">
+
+      <!-- bal menu collapse) -->
+      <div class="col-12 d-lg-none mb-3">
+          <button class="btn btn-outline-secondary w-100 rounded-3" data-bs-toggle="collapse" data-bs-target="#leftSidebar">
+              Szűrők megjelenítése
+          </button>
+      </div>
+
+      <!-- bal menu -->
+      <div class="col-lg-2 collapse d-lg-block" id="leftSidebar">
+          <div class="sidebar-card">
+
+              <h5 class="fw-bold mb-3">Kategóriák</h5>
+
+              <button class="btn btn-outline-primary w-100 mb-2 category-btn" data-cat="édesség">Édesség</button>
+              <button class="btn btn-outline-primary w-100 mb-2 category-btn" data-cat="szendvics">Szendvics</button>
+              <button class="btn btn-outline-primary w-100 mb-2 category-btn" data-cat="üdítő">Üdítők</button>
+              <button class="btn btn-outline-primary w-100 mb-2 category-btn" data-cat="kávé">Kávék</button>
+              <button class="btn btn-outline-primary w-100 mb-2 category-btn" data-cat="friss">Friss</button>
+
+              <hr>
+
+              <h6 class="fw-bold">Ár</h6>
+              <input type="number" class="form-control mb-2" id="min-price" placeholder="Minimum">
+              <input type="number" class="form-control mb-3" id="max-price" placeholder="Maximum">
+
+              <button class="btn btn-dark w-100" id="search-btn">Keresés</button>
+
+          </div>
+      </div>
+
+      <!-- termékek listaja -->
+      <div class="col-lg-7 my-3 my-lg-0">
+          <div class="bg-white shadow-sm rounded-4 p-4">
+              <div id="errordiv" hidden></div>
+              <div id="products-container" class="row g-3"></div>
+          </div>
+      </div>
+
+      <!-- jobb menu collapse -->
+      <div class="col-12 d-lg-none mb-3">
+          <button class="btn btn-outline-secondary w-100 rounded-3" data-bs-toggle="collapse" data-bs-target="#rightSidebar">
+              Kosár megjelenítése
+          </button>
+      </div>
+
+      <!-- jobb menus -->
+      <div class="col-lg-3 collapse d-lg-block" id="rightSidebar">
+          <div class="sidebar-card">
+              <h5 class="fw-bold">Kosár</h5>
+
+              <div id="cart-content" class="text-muted mt-3">
+                  A kosár jelenleg üres.
+              </div>
+
+              <button class="btn btn-success w-100 mt-4">Rendelés leadása</button>
+          </div>
+      </div>
+
+  </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./products.js"></script>
+</body>
+</html>
