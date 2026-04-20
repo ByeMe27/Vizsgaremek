@@ -94,7 +94,7 @@ body {
 }
 
 #menus-container{
-  height: 88vh;
+  height: 85vh;
 }
 
 /* TERMÉK KÁRTYÁK */
@@ -118,15 +118,19 @@ body {
   cursor: pointer;
   transition: 0.2s;
 }
+.to-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
+}
+.to-cart:active {
+  box-shadow: 0 4px 10px rgba(245, 30, 2, 0.3);
+  background: #ff3b3b;
+}
+
 
 .menu-name {
   font-weight: 600;
   color: #ffb27a;
-}
-
-.add-to-cart-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
 }
 
 #cart-content {

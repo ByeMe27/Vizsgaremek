@@ -131,15 +131,14 @@ body {
 .to-cart:active{
   background: #ff1f1f;
 }
+.to-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
+}
 
 #product-name {
   font-weight: 600;
   color: #ffb27a;
-}
-
-.add-to-cart-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
 }
 
 #cart-content {

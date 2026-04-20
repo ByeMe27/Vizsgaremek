@@ -77,15 +77,6 @@ body {
   padding: 15px;
 }
 
-/* TERMÉK KÉPEK FIX MÉRETTEL */
-.card img {
-  width: 100%;
-  height: 180px; /* fix magasság */
-  object-fit: contain; /* nem torzul, inkább levág */
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
-
 /* KOSÁRBA GOMB */
 .order-again {
   background: linear-gradient(135deg, #ff6a00, #ff3b3b);
@@ -106,7 +97,7 @@ body {
   color: #ffb27a;
 }
 
-.add-to-cart-btn:hover {
+.order-again:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(255, 140, 50, 0.3);
 }
