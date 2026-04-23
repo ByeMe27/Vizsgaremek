@@ -63,7 +63,8 @@ async function szures() {
 
   try {
 
-    if(kivalasztottKategoria == "Összes"){
+    console.log(min, max)
+    if(kivalasztottKategoria == "Összes" ){
       minden()
       return
     }
