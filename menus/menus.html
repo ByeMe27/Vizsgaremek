@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SnackSuli – Menük</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="menus.css" />
+    <link rel="icon" type="image/x-icon" href="./pics/logo_nobg.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <!-- NAVBAR – lebegő, oldalt margóval -->
+    <div class="navbar-wrap">
+      <nav class="top-navbar">
+        <div class="nav-left">
+          <div class="nav-logo-wrap">
+            <img src="./pics/logo.png" class="nav-logo" alt="SnackSuli" />
+          </div>
+        </div>
+        <div class="nav-links">
+          <a class="nav-link" href="../products/products.html">Termékek</a>
+          <a class="nav-link active" href="#">Menük</a>
+          <a class="nav-link" href="../myorders/myorders.html">Rendeléseim</a>
+          <a class="nav-link" href="../feedback/feedback.html">Visszajelzés</a>
+        </div>
+        <div class="nav-right">
+          <!-- BÜFÉ STÁTUSZ – JS tölti be -->
+          <div id="bufe-status" class="bufe-status-card"></div>
+          <div class="user-wrapper">
+            <button class="user-btn" id="user-login"></button>
+            <div id="user-popup">
+              <div id="popup-username"></div>
+              <div class="d-flex flex-column gap-2">
+                <button id="profile" class="btn btn-outline-primary w-100">
+                  <i class="fa-solid fa-user me-1"></i> Profil
+                </button>
+                <button id="logout-btn" class="btn btn-outline-danger w-100">
+                  <i class="fa-solid fa-right-from-bracket me-1"></i>
+                  Kijelentkezés
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- TARTALOM – kis margóval a navbar alatt -->
+    <div class="content-wrap">
+      <div class="page-layout">
+        <!-- KÖZÉP: Menük -->
+        <main class="products-panel">
+          <div id="errordiv" hidden></div>
+          <div id="menus-container" class="row g-3"></div>
+        </main>
+
+        <!-- JOBB PANEL: Kosár -->
+        <aside class="cart-panel">
+          <div class="panel-title">
+            <i class="fa-solid fa-basket-shopping"></i> Kosár
+          </div>
+
+          <div id="cart-content" class="cart-items">
+            <div class="cart-empty-msg">A kosár jelenleg üres</div>
+          </div>
+
+          <div id="cart-price"></div>
+
+          <button id="place-order" class="place-order-btn">
+            <i class="fa-solid fa-check me-1"></i> Rendelés leadása
+          </button>
+        </aside>
+      </div>
+    </div>
+
+    <!-- FOOTER – teljes szélességű, oldal színével megegyező -->
+    <footer class="footer-wrap">
+      <div class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <!-- Branding -->
+            <div class="footer-brand">
+              <div class="footer-brand-logo">
+                <div class="footer-logo-box">
+                  <img
+                    src="./pics/logo.png"
+                    class="footer-logo-img"
+                    alt="SnackSuli"
+                  />
+                </div>
+                <span class="footer-brand-name"
+                  >Snack<span class="footer-brand-accent">Suli</span></span
+                >
+              </div>
+              <p class="footer-tagline">
+                Az iskolai büfé digitálisan – gyorsan, egyszerűen, átláthatóan.
+              </p>
+            </div>
+
+            <!-- Navigáció -->
+            <div class="footer-col">
+              <div class="footer-col-title">Navigáció</div>
+              <div class="footer-links">
+                <a class="footer-link" href="../products/products.html"
+                  ><span class="footer-link-dot"></span> Termékek</a
+                >
+                <a class="footer-link" href="#"
+                  ><span class="footer-link-dot"></span> Menük</a
+                >
+                <a class="footer-link" href="../myorders/myorders.html"
+                  ><span class="footer-link-dot"></span> Rendeléseim</a
+                >
+                <a class="footer-link" href="../feedback/feedback.html"
+                  ><span class="footer-link-dot"></span> Visszajelzés</a
+                >
+              </div>
+            </div>
+
+            <!-- Nyitvatartás -->
+            <div class="footer-col">
+              <div class="footer-col-title">Nyitvatartás</div>
+              <div class="footer-hours-row">
+                <span class="footer-hours-badge">H – P</span>
+                <span class="footer-hours-time">6:55 – 13:35</span>
+              </div>
+              <p class="footer-hours-note">
+                Hétvégén és ünnepnapokon zárva tartunk.
+              </p>
+            </div>
+          </div>
+
+          <hr class="footer-divider" />
+          <div class="footer-bottom">
+            <p class="footer-copy">
+              © 2026 <span class="footer-copy-accent">SnackSuli</span> – Minden
+              jog fenntartva.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./menus.js"></script>
+  </body>
+</html>

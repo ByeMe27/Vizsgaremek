@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SnackSuli – Regisztráció</title>
+    <link rel="stylesheet" href="register.css" />
+    <link rel="icon" type="image/x-icon" href="../pics/logo_nobg.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="register-wrap">
+      <div class="register-card">
+        <div class="login-logo">
+          <div class="logo-box">
+            <img src="../pics/logo.png" alt="SnackSuli logó" />
+          </div>
+          <span class="brand-name"
+            >Snack<span class="brand-accent">Suli</span></span
+          >
+        </div>
+
+        <h1 class="register-title">Regisztráció</h1>
+        <p class="register-sub">Hozz létre egy fiókot!</p>
+
+        <form method="post" novalidate>
+          <div class="field-group">
+            <label for="name"
+              ><i class="fa-solid fa-user"></i> Teljes név</label
+            >
+            <input
+              type="text"
+              placeholder="Kovács János"
+              name="name"
+              id="name"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="email"
+              ><i class="fa-solid fa-envelope"></i> E-mail cím</label
+            >
+            <input
+              type="text"
+              placeholder="pelda@email.hu"
+              name="email"
+              id="email"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="class"
+              ><i class="fa-solid fa-school"></i> Osztály</label
+            >
+            <input type="text" placeholder="Pl. 13C" name="class" id="class" />
+          </div>
+
+          <div class="field-group">
+            <label for="password"
+              ><i class="fa-solid fa-lock"></i> Jelszó</label
+            >
+            <input
+              type="password"
+              placeholder="••••••••"
+              name="psw"
+              id="password"
+            />
+          </div>
+
+          <button type="button" id="registerbtn">
+            <i class="fa-solid fa-user-plus"></i> Regisztráció
+          </button>
+
+          <div id="errordiv" hidden class="register-alert"></div>
+
+          <p class="back-link">
+            Már van fiókod?
+            <a href="../login.html"
+              ><i class="fa-solid fa-arrow-left"></i> Jelentkezz be</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="register.js"></script>
+  </body>
+</html>

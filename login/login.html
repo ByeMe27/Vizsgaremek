@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SnackSuli – Bejelentkezés</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="icon" type="image/x-icon" href="./pics/logo_nobg.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="login-wrap">
+      <div class="login-card">
+        <!-- Logo -->
+        <div class="login-logo">
+          <div class="logo-box">
+            <img src="./pics/logo.png" alt="SnackSuli logó" />
+          </div>
+          <span class="brand-name"
+            >Snack<span class="brand-accent">Suli</span></span
+          >
+        </div>
+
+        <h1 class="login-title">Bejelentkezés</h1>
+        <p class="login-sub">Üdvözöljük!</p>
+
+        <form method="post" novalidate>
+          <div class="field-group">
+            <label for="email"
+              ><i class="fa-solid fa-envelope"></i> E-mail</label
+            >
+            <input
+              type="text"
+              placeholder="pelda@email.hu"
+              name="email"
+              id="email"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="password"
+              ><i class="fa-solid fa-lock"></i> Jelszó</label
+            >
+            <input
+              type="password"
+              placeholder="••••••••"
+              name="psw"
+              id="password"
+            />
+          </div>
+
+          <div class="login-options">
+            <label class="remember-label">
+              <input
+                type="checkbox"
+                checked="checked"
+                name="remember"
+                id="remember"
+              />
+              <span>Emlékezz rám</span>
+            </label>
+          </div>
+
+          <button type="button" id="loginbtn">
+            <i class="fa-solid fa-right-to-bracket me-1"></i> Bejelentkezés
+          </button>
+
+          <div id="errordiv" class="login-alert" hidden></div>
+
+          <p class="register-link">
+            Még nincs fiókod?
+            <a href="./register/register.html"
+              >Regisztrálj itt <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="login.js"></script>
+  </body>
+</html>

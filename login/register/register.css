@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #2b2f36;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #f1f1f1;
+}
+
+.register-wrap {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-card {
+  background: #23272e;
+  border: 1px solid #3e4450;
+  border-radius: 20px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.logo-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #464c58;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 140, 50, 0.3);
+  flex-shrink: 0;
+}
+
+.logo-box img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f1f1f1;
+}
+
+.brand-accent {
+  color: #ff8c32;
+}
+
+.register-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f1f1f1;
+  margin-bottom: 4px;
+}
+
+.register-sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+.field-group {
+  margin-bottom: 16px;
+}
+
+.field-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 7px;
+}
+
+.field-group label i {
+  margin-right: 5px;
+  color: #4b5563;
+}
+
+.field-group input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid #3e4450;
+  background: #2b2f36;
+  color: #f1f1f1;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.field-group input::placeholder {
+  color: #4b5563;
+}
+
+.field-group input:focus {
+  outline: none;
+  border-color: #ff8c32;
+  box-shadow: 0 0 0 3px rgba(255, 140, 50, 0.12);
+}
+
+.register-alert {
+  align-items: center;
+  gap: 10px;
+  background: rgba(226, 75, 74, 0.08);
+  border: 1px solid rgba(226, 75, 74, 0.3);
+  border-left: 3px solid #e24b4a;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #f09595;
+  margin-top: 14px;
+  display: none;
+}
+
+.register-alert:not([hidden]) {
+  display: flex;
+  animation: alertSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.register-alert .alert-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(226, 75, 74, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.register-alert .alert-icon i {
+  font-size: 12px;
+  color: #e24b4a;
+}
+
+.register-alert.success {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-left: 3px solid #22c55e;
+  color: #86efac;
+}
+
+.register-alert.success .alert-icon {
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.register-alert.success .alert-icon i {
+  color: #22c55e;
+}
+
+@keyframes alertSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+button#registerbtn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #ff8c32;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  margin-top: 4px;
+}
+
+button#registerbtn:hover {
+  background: #e67a20;
+  transform: translateY(-1px);
+}
+
+button#registerbtn:active {
+  transform: scale(0.98);
+}
+
+.back-link {
+  text-align: center;
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 20px;
+}
+
+.back-link a {
+  color: #ff8c32;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .register-card {
+    padding: 28px 20px;
+  }
+}
