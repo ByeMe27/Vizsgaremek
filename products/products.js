@@ -21,6 +21,7 @@ function kategoriaValasztas(event) {
 }
 
 async function minden() {
+  products_container.innerHTML = ""
   try {
     let req = await fetch("./products.php/minden");
     let Data = await req.json();
@@ -61,6 +62,11 @@ async function szures() {
   //console.log("Keresés:", kivalasztottKategoria, min, max);
 
   try {
+
+    if(kivalasztottKategoria == "Összes"){
+      minden()
+      return
+    }
     let req = await fetch(
       `./products.php/szures?kategoria=${kivalasztottKategoria}&min=${min}&max=${max}`,
     );
