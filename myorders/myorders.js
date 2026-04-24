@@ -3,6 +3,8 @@ orders_cont.innerHTML = "";
 let errordiv = document.getElementById("errordiv");
 errordiv.innerHTML = "";
 
+let rendelessData = []; // ide mentjük a betöltött rendeléseket, az újrarendeléshez kell
+
 async function rendelesekBetolt() {
   try {
     let res = await fetch("./myorders.php?action=myorders");
@@ -12,11 +14,18 @@ async function rendelesekBetolt() {
       throw data.valasz;
     }
 
-    // Státusz → CSS osztály mapping
+    rendelessData = data;
+
+    if (data.length === 0) {
+      orders_cont.innerHTML = `<p class="text-muted">Még nincs leadott rendelésed.</p>`;
+      return;
+    }
+
+
     const statusClass = {
-      Leadva: "status-pending",
-      Átvéve: "status-cancelled",
-      Átvehető: "status-done",
+      "Leadva":    "status-pending",   
+      "Átvehető":  "status-done",      
+      "Átvéve":    "status-cancelled", 
     };
 
     for (const rendeles of data) {
@@ -38,7 +47,7 @@ async function rendelesekBetolt() {
           <div class="card w-100 ${badgeClass}">
             <div class="card-body">
               <div class="order-header">
-                <span class="order-id"  style="font-size: 18px;">#${rendeles.rendeles_id}</span>
+                <span class="order-id" style="font-size: 18px;">#${rendeles.rendeles_id}</span>
                 <span class="order-status ${badgeClass}">${rendeles.statusz}</span>
               </div>
               <hr class="order-divider">
@@ -56,13 +65,57 @@ async function rendelesekBetolt() {
         </div>
       `;
     }
+
+
+    document.querySelectorAll(".ujra-rendel").forEach((gomb) => {
+      gomb.addEventListener("click", ujraRendel);
+    });
+
   } catch (error) {
     errordiv.hidden = false;
     errordiv.innerHTML = error;
     errordiv.className = "alert alert-danger";
   }
 }
+
+async function ujraRendel(e) {
+  const rendelesId = parseInt(e.currentTarget.dataset.rendelesId);
+
+  const rendeles = rendelessData.find((r) => r.rendeles_id === rendelesId);
+  if (!rendeles) return;
+
+  const termekek = rendeles.termekek.map((t) => ({
+    term_id:   t.term_id,
+    menu_id:   t.menu_id,
+    mennyiseg: t.mennyiseg,
+  }));
+
+  try {
+    const res = await fetch("./myorders.php?action=orderagain", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ termekek }),
+    });
+
+    const data = await res.json();
+
+    errordiv.hidden = false;
+    errordiv.innerHTML = data.valasz;
+    errordiv.className = res.ok ? "alert alert-success" : "alert alert-danger";
+
+    if (res.ok) {
+      orders_cont.innerHTML = "";
+      rendelesekBetolt();
+    }
+  } catch (error) {
+    errordiv.hidden = false;
+    errordiv.innerHTML = "Hiba történt az újrarendelés során.";
+    errordiv.className = "alert alert-danger";
+  }
+}
+
 window.addEventListener("load", rendelesekBetolt);
+
 
 //////////////////SESSION
 
