@@ -1,0 +1,632 @@
+{
+  "info": {
+    "_postman_id": "5e1d3a9c-201b-4345-b74d-6a65cd83238c",
+    "name": "My Collection",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54567151",
+    "_collection_link": "https://go.postman.co/collection/54567151-5e1d3a9c-201b-4345-b74d-6a65cd83238c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "pm.test(\"Sikeres bejelentkezés - státusz 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Van success mező\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.success).to.be.true;",
+              "});",
+              "",
+              "pm.test(\"Van name és role a válaszban\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.user).to.have.property(\"name\");",
+              "    pm.expect(json.user).to.have.property(\"role\");",
+              "});",
+              "",
+              "",
+              "pm.test(\"Hibás jelszó - státusz 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Hibás email - státusz 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Üres mezők - státusz 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "packages": {},
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost/Vizsgaremek/login/login.php/login",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "login",
+            "login.php",
+            "login"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "register",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "pm.test(\"Sikeres regisztráció - státusz 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Van success mező a válaszban\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.have.property(\"success\");",
+              "});",
+              "",
+              "",
+              "pm.test(\"Foglalt email - státusz 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Van hibaüzenet a válaszban\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.have.property(\"error\");",
+              "});",
+              "",
+              "",
+              "pm.test(\"Üres mezők - státusz 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost/Vizsgaremek/login/register/register.php/register",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "login",
+            "register",
+            "register.php",
+            "register"
+          ]
+        },
+        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+      },
+      "response": []
+    },
+    {
+      "name": "products_rendeles",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"Sikeres rendelés - státusz 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van success mező a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json.success).to.be.true;\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Üres kosár - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van hibaüzenet az üres kosárnál\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"valasz\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Hibás termék adat - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Érvénytelen mennyiség - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost/Vizsgaremek/products/products.php/rendeles",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "products",
+            "products.php",
+            "rendeles"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "menus_minden",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Sikeres lekérés - státusz 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"A válasz tömb\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Az elemeknek van id, name, price mezője\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json[0]).to.have.property(\"id\");\r",
+              "    pm.expect(json[0]).to.have.property(\"name\");\r",
+              "    pm.expect(json[0]).to.have.property(\"price\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Nem GET kérés - státusz 405\", function () {\r",
+              "    pm.response.to.have.status(405);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost/Vizsgaremek/menus/menus.php/minden",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "menus",
+            "menus.php",
+            "minden"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "myorders_orderagain",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"Sikeres újrarendelés - státusz 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van valasz mező a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"valasz\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Üres termékek - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van hibaüzenet az üres kérésnél\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"valasz\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Nem POST kérés - státusz 405\", function () {\r",
+              "    pm.response.to.have.status(405);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost/Vizsgaremek/myoders/myorders.php/orderagain",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "myoders",
+            "myorders.php",
+            "orderagain"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "feedback_userslatestpost",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"Sikeres lekérés - státusz 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van varjmeg mező a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"varjmeg\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"A varjmeg értéke szám\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json.varjmeg).to.be.a(\"number\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"A varjmeg értéke nem negatív\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json.varjmeg).to.be.at.least(0);\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Nem GET kérés - státusz 405\", function () {\r",
+              "    pm.response.to.have.status(405);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost/Vizsgaremek/feedback/feedback.php/userslatestpost",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "feedback",
+            "feedback.php",
+            "userslatestpost"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "dashboard_stats_query",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"Sikeres lekérés - státusz 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van osszes_rendeles mező\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"osszes_rendeles\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van osszes_bevetel mező\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"osszes_bevetel\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van top_termek mező\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"top_termek\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"A statuszok tömb\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json.statuszok).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"A visszajelzes_lista tömb\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json.visszajelzes_lista).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Nem GET kérés - státusz 405\", function () {\r",
+              "    pm.response.to.have.status(405);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost/Vizsgaremek/dashboard/stats/stats.php/query",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "dashboard",
+            "stats",
+            "stats.php",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "dashboard_orders_change",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"Sikeres módosítás - státusz 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van sikeres üzenet a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.include(\"Sikeres módósítás!\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Hiányzó adatok - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van hibaüzenet a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"Hiba\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Nem PUT kérés - státusz 405\", function () {\r",
+              "    pm.response.to.have.status(405);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "localhost/Vizsgaremek/dashboard/orders/orders.php/change",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "dashboard",
+            "orders",
+            "orders.php",
+            "change"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "dashboard_products_upload",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"Sikeres feltöltés - státusz 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van Siker mező a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"Siker\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Hiányzó adatok - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van Hiba mező a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"Hiba\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Hiányzó kép - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Foglalt terméknév - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Nem POST kérés - státusz 405\", function () {\r",
+              "    pm.response.to.have.status(405);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost/Vizsgaremek/dashboard/products/products.php/upload",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "dashboard",
+            "products",
+            "products.php",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "dashboard_menus_delete",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"Sikeres törlés - státusz 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Van Siker mező a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"Siker\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Hiányzó id - státusz 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Van Hiba mező a válaszban\", function () {\r",
+              "    var json = pm.response.json();\r",
+              "    pm.expect(json).to.have.property(\"Hiba\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"Nem DELETE kérés - státusz 405\", function () {\r",
+              "    pm.response.to.have.status(405);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost/Vizsgaremek/dashboard/menus/menus.php/delete",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "Vizsgaremek",
+            "dashboard",
+            "menus",
+            "menus.php",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
