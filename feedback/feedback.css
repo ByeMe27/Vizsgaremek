@@ -1,6 +1,6 @@
-/* ===========================
+/*    
    ALAP
-=========================== */
+    */
 * {
   box-sizing: border-box;
 }
@@ -86,9 +86,9 @@ body {
   flex-shrink: 0;
 }
 
-/* ===========================
+/*    
    BÜFÉ STÁTUSZ KÁRTYA
-=========================== */
+    */
 .bufe-status-card {
   display: flex;
   align-items: center;
@@ -143,9 +143,9 @@ body {
   background: #ef4444;
 }
 
-/* ===========================
+/*    
    USER GOMB & POPUP
-=========================== */
+    */
 .user-wrapper {
   position: relative;
 }
@@ -487,9 +487,9 @@ body {
   border: 1px solid rgba(107, 114, 128, 0.35);
 }
 
-/* ===========================
+/*    
    FOOTER
-=========================== */
+    */
 .footer-wrap {
   padding: 0;
 }
@@ -639,18 +639,18 @@ body {
   color: #ff8c32;
 }
 
-/* ===========================
+/*    
    RESPONSIVE – tablet
-=========================== */
+    */
 @media (max-width: 1100px) {
   .page-layout {
     grid-template-columns: 300px 1fr;
   }
 }
 
-/* ===========================
+/*    
    RESPONSIVE – mobil
-=========================== */
+    */
 @media (max-width: 768px) {
   .navbar-wrap {
     padding: 8px 10px 0 10px;

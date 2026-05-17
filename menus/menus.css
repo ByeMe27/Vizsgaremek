@@ -1,6 +1,6 @@
-/* ===========================
+/*    
    ALAP
-=========================== */
+    */
 * {
   box-sizing: border-box;
 }
@@ -87,9 +87,9 @@ body {
   flex-shrink: 0;
 }
 
-/* ===========================
+/*    
    BÜFÉ STÁTUSZ KÁRTYA
-=========================== */
+    */
 .bufe-status-card {
   display: flex;
   align-items: center;
@@ -617,9 +617,9 @@ body {
   }
 }
 
-/* ===========================
+/*    
    RESPONSIVE – mobil
-=========================== */
+    */
 @media (max-width: 768px) {
   .navbar-wrap {
     padding: 8px 10px 0 10px;

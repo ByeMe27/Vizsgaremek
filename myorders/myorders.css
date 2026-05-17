@@ -1,6 +1,6 @@
-/* ===========================
+/*   
    ALAP
-=========================== */
+   */
 * {
   box-sizing: border-box;
 }
@@ -13,9 +13,9 @@ body {
   min-height: 100vh;
 }
 
-/* ===========================
+/*   
    NAVBAR WRAPPER – oldalt és felül is margó
-=========================== */
+   */
 .navbar-wrap {
   padding: 10px 16px 0 16px;
   position: sticky;
@@ -35,9 +35,9 @@ body {
   height: 72px;
 }
 
-/* ===========================
+/*   
    LOGÓ
-=========================== */
+   */
 .nav-logo-wrap {
   width: 54px;
   height: 54px;
@@ -57,9 +57,9 @@ body {
   object-fit: contain;
 }
 
-/* ===========================
+/*   
    NAV LINKEK
-=========================== */
+   */
 .nav-links {
   display: flex;
   gap: 4px;
@@ -88,9 +88,9 @@ body {
   color: #fff;
 }
 
-/* ===========================
+/*   
    NAV JOBB OLDAL
-=========================== */
+   */
 .nav-right {
   display: flex;
   align-items: center;
@@ -99,9 +99,9 @@ body {
   flex-shrink: 0;
 }
 
-/* ===========================
+/*   
    BÜFÉ STÁTUSZ KÁRTYA
-=========================== */
+   */
 .bufe-status-card {
   display: flex;
   align-items: center;
@@ -156,9 +156,9 @@ body {
   background: #ef4444;
 }
 
-/* ===========================
+/*   
    USER GOMB & POPUP
-=========================== */
+   */
 .user-wrapper {
   position: relative;
 }
@@ -249,32 +249,32 @@ body {
   }
 }
 
-/* ===========================
+/*   
    CONTENT WRAP
-=========================== */
+   */
 .content-wrap {
   padding: 12px 16px 16px 16px;
 }
 
-/* ===========================
+/*   
    ORDERS LAYOUT – teljes szélesség
-=========================== */
+   */
 .orders-layout {
   width: 100%;
 }
 
-/* ===========================
+/*   
    RENDELÉSEK PANEL
-=========================== */
+   */
 .orders-panel {
   background: transparent;
   border-radius: 14px;
   overflow-x: hidden;
 }
 
-/* ===========================
+/*   
    RENDELÉS KÁRTYÁK
-=========================== */
+   */
 .card {
   background: #1e2128;
   border-radius: 14px;
@@ -394,9 +394,9 @@ body {
   margin: 4px 0;
 }
 
-/* ===========================
+/*   
    ÚJRARENDELÉS GOMB
-=========================== */
+   */
 .order-again {
   background: #ff8c32;
   color: white;
@@ -428,9 +428,9 @@ body {
   padding: 10px 14px;
 }
 
-/* ===========================
+/*   
    FOOTER – teljes szélességű
-=========================== */
+   */
 .footer-wrap {
   padding: 0;
 }
@@ -589,18 +589,18 @@ body {
   color: #ff8c32;
 }
 
-/* ===========================
+/*   
    RESPONSIVE – tablet
-=========================== */
+   */
 @media (max-width: 1100px) {
   .orders-layout {
     grid-template-columns: 1fr;
   }
 }
 
-/* ===========================
+/*   
    RESPONSIVE – mobil
-=========================== */
+   */
 @media (max-width: 768px) {
   .navbar-wrap {
     padding: 8px 10px 0 10px;
